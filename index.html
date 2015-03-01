@@ -1,1 +1,109 @@
-A Page She Wrote
+<!-- Created 02/28/15 
+An attempts at the basic buidling blocks for space invaders
+-->
+
+<!DOCTYPE html>
+
+<html>
+	
+<head>
+	<title>TIO Engine (just modules for Space Invaders actually)</title>
+	<link rel='stylesheet' type='text/css' href='css/main.css' media='screen' />
+
+</head>
+
+
+<body>
+
+	<header>
+		<h1>Insert Page Title Here</h1>
+		<p>Some witty quip</p>
+		<hr>
+		<p>This is really just a testing ground for the modules</p>
+		<br>
+	</header>
+
+	<div class='sample'>
+		<h2>Sample Board</h2>
+
+		<div class='board'>
+			
+			<section class='stats topbar'>
+				<div>Time: <span>00:00.00</span></div>
+
+				<div class="death-row">
+					<div class="stat kill-count mobX">
+						<div class="object mobX"><div class="dead-x">X</div></div><div class="death-count">0</div>
+					</div>
+					<div class="stat kill-count mob1">
+						<div class="object mob1"><div class="dead-x">X</div></div><div class="death-count">0</div>
+					</div>
+					<div class="stat kill-count mob2">
+						<div class="object mob2"><div class="dead-x">X</div></div><div class="death-count">0</div>
+					</div>
+					<div class="stat kill-count mob3">
+						<div class="object mob3"><div class="dead-x">X</div></div><div class="death-count">0</div>
+					</div>
+				</div>
+			</section>
+
+			<section class='stats leftbar'></section>
+
+			<section class='field'>
+				
+				<div class='player'></div>
+
+				<div class='mob mob1'></div>
+				<div class='mob mob2'></div>
+				<div class='mob mob3'></div>
+				<div class='mob mobX'></div>
+
+				<div class='bullet'></div>
+
+				<div class='barrier'></div>
+
+			</section>
+
+			<section class='stats rightbar'></section>
+
+			<section class='stats bottombar'>
+				<div class="stat lives">Lives: <span>0</span></div>
+				<div class="bullet-stats">
+					<div class="stat shots">Shots: <span>00</span></div>
+					<div class="stat hits">Hits: <span>00</span></div>
+				</div>
+			</section>
+
+		</div>
+
+	</div>
+
+</body>
+
+
+<!-- Scripts -->
+<!-- Third Party -->
+	<script language='javascript' type='text/javascript' src='js/third-party/keypress.js'></script>
+
+<!-- Domestic -->
+	<script language='javascript' type='text/javascript' src='js/Utilities.js'></script>
+
+	<script language='javascript' type='text/javascript' src='js/Bullet.js'></script>
+	<script language='javascript' type='text/javascript' src='js/Mob.js'></script>
+	<script language='javascript' type='text/javascript' src='js/Player.js'></script>
+
+	<script language='javascript' type='text/javascript' src='js/Rows.js'></script>
+
+	<script language='javascript' type='text/javascript' src='js/Field.js'></script>
+	<!-- 
+	<script language='javascript' type='text/javascript' src='js/StatsDisplay.js'></script>
+	 -->
+	<script language='javascript' type='text/javascript' src='js/Board.js'></script>
+	<!-- 
+	<script language='javascript' type='text/javascript' src='js/update.js'></script>
+	 -->
+	<script language='javascript' type='text/javascript' src='js/main.js'></script>
+
+
+</html>
+

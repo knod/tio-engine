@@ -1,0 +1,211 @@
+/* Created 03/01/15 */
+
+/* ================ */
+/* PAGE STRUCTURE 	*/
+/* ================ */
+
+body, p, h1, div {
+	padding: 0;
+	margin: 0;
+}
+
+body {text-align: center;}
+
+.splash-screen {}
+
+
+/* ================ */
+/* PAGE SKIN 		*/
+/* ================ */
+body {
+	background-color: lightgray;
+}
+
+/* ================ */
+/* PAGE FUNCTION  	*/
+/* ================ */
+
+/* -------------------------------------------- */
+
+/* ================ */
+/* GAME STRUCTURE 	*/
+/* ================ */
+/* WIDTH MUST BE AN WHOLE NUMBER OF REM'S FOR PLAYER SPEED TO WORK */
+.board {
+	/*position: relative;*/
+	display: inline-block;
+	width: 35rem;
+	height: 30rem;
+}
+
+/*---- STATS ----*/
+.topbar, .bottombar {
+	margin-bottom: 0.2rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.death-row, .bullet-stats {
+	width: 40%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.death-row div, .bullet-stats div {
+	/* Hack to get Others' images to sit next to text */
+	position: relative;
+	display: inline-block;
+}
+
+.death-count {
+	margin-left: 0.5rem;
+}
+
+/*---- FIELD ----*/
+.field {
+	display: inline-block;
+	width: 35rem;  /* percent of board */
+	height: 25rem;
+}
+
+.player {
+	width: 4%;  /* Percent of field width? */
+	height: 4%;  /* How to make objects square? */
+}
+
+.row {
+	/* Should match JS */
+	width: 88%;
+	height: 8%;
+}
+
+/* Have to decide if mobs should be in rows
+Really limits felxibility for mob types of things */
+.row.mob {
+	/* Should match in JS */
+	width: 4%;
+	/* Specifically, this is bad if not in a row */
+	height: 50%;
+}
+
+/* For now, have both options */
+.mob {
+	/* Should match in JS */
+	width: 4%;
+	height: 4%;
+}
+
+.bullet {
+	/* All in JS now? */
+	/*width: 4px;
+	height: 7px;*/
+}
+
+.barrier {
+	/* TODO: Converto to "%" */
+	width: 2rem;
+	height: 1rem;
+}
+
+
+/* ================ */
+/* GAME SKIN 		*/
+/* ================ */
+.field {
+	/* For visibility */
+	background-color: darkgray;
+	/*border: 1px solid black;*/
+}
+
+.player {
+	background-color: teal;
+}
+
+.row {
+	/* For visibility */
+	background-color: darkkhaki;
+	/*border: 1px solid black;*/
+}
+
+/* sprites */
+.mob1 {
+	background-color: teal;
+	/*background-image: url('../images/mob1.png');*/
+}
+
+.mob2 {
+	background-color: coral;
+	/*background-image: url('../images/mob2.png');*/
+}
+
+.mob3 {
+	background-color: firebrick;
+	/*background-image: url('../images/mob3.png');*/
+}
+
+.mobX {
+	/*background-color*/
+	/*background-image: url('../images/mobX.png');*/
+}
+
+.bullet {
+	background-color: cornsilk;
+}
+
+.barrier {
+	background-color: black;
+}
+
+.stat{ background: none; }
+
+
+/* ================ */
+/* GAME FUNCTION  	*/
+/* ================ */
+.field {
+	/* To position children */
+	position: relative;
+	/* So it won't hide it's z-index < 0 kids */
+	z-index: 0;
+}
+
+.player {
+	position: absolute;
+	bottom: 0;
+}
+
+.row {
+	position: absolute;
+	left: 0;
+}
+
+.mob {
+	position: absolute;
+	top: 0;
+}
+
+.bullet {
+	z-index: -100;
+}
+
+.barrier {
+	position: absolute;
+	/* Not quite function since they don't move */
+	bottom: 5%;
+}
+
+/* Visibility vs. space occupation */
+.invisible { visibility: hidden; }
+
+.hidden { display: none; }
+
+
+/* ================ */
+/* SAMPLE 			*/
+/* ================ */
+.sample .mob2 { top: 8%; }
+.sample .mob3 { top: 16%; }
+.sample .mobX { top: 24%; }
+
+
+
