@@ -2,7 +2,9 @@
 
 'use strict'
 
-document.addEventListener( "load", function () {
+var boards;
+
+window.addEventListener( "load", function () {
 /*
 
 Runs all the boards for the page, compares their values, etc.
@@ -11,10 +13,11 @@ Runs all the boards for the page, compares their values, etc.
 	// TODO: Fetch number of players dynamically
 	var numPlayers		= 1;
 
-	var boards 			= [];
+	// var boards 			= [];
+	boards = [];
 	for (var boardCount = 0; boardCount < numPlayers; boardCount++ ) {
 
-		board = new Board( (boardCount + 1) );
+		var board = new Board( (boardCount + 1) );
 		boards.push( board );
 
 	}

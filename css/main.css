@@ -203,6 +203,7 @@ Really limits felxibility for mob types of things */
 /* ================ */
 /* SAMPLE 			*/
 /* ================ */
+.sample .mob1 { top: 0;}
 .sample .mob2 { top: 8%; }
 .sample .mob3 { top: 16%; }
 .sample .mobX { top: 24%; }

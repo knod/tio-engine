@@ -8,7 +8,8 @@ var Player = function ( id, fieldHTML ) {
 Player object, hopefully decoupled enough to allow for
 multiple players
 */
-	var player = this;
+
+	var player = new Entity();
 
 	// =================
 	// SETUP VARIABLES
@@ -17,20 +18,27 @@ multiple players
 	player.objType			= "player";
 	player.id 				= "player-" + id;
 	// Purposefully, the field object is not made accessible to its child
-	player.fieldHTML		= null;
+	player.bounderHTML		= fieldHTML;
 	player.html 			= null;
 
 	player.facing		 	= 0;  // Angle of the direction player is facing. Not needed for space invaders...
 	player.moveAngle		= 0;  // Angle of direction of movement
 	player.speed 			= 0;
 	// Which one? ^^^ or vvv
-	player.xSpeed 			= 0;  // to be based on own width and game field width?
-	player.ySpeed 			= 0;
+	player.speedX 			= 0;  // to be based on own width and game field width?
+	player.speedY 			= 0;
+	player.maxSpeedX 		= 1;
+	player.maxSpeedY 		= 0;
+	// Or...
+	player.velocities 		= { x: 0, y: 0 };
+	player.maxVelocitiesMagnitudes = { x: 1, y: 0 };
 
 	// Stats
 	player.lives 			= 3;  // if === 0, player is dead
 	player.shots 			= 0;
 	player.hits 			= 0;
+
+	player.limits 			= {};  // { 0, field height - height }, { fieldwidth - width, field height - height }
 
 	// Variables are things that won't ever be changed or searched for outside of this Player
 	
@@ -44,6 +52,11 @@ multiple players
 	Does not append the object
 	*/
 		var html = document.createElement( "div" );
+		html.className 		= 'object player';
+		html.dataset.left 	= "0";
+		html.style.left 	= "0rem";
+
+		player.bounderHTML.appendChild( html );
 
 		return html;
 	};  // End buildHTML()
@@ -52,10 +65,34 @@ multiple players
 	// =================
 	// RUNTIME FUNCTIONS
 	// =================
-	var move = function () {
+	var pressDirectionKey = function ( key ) {
 	/*
 
 	*/
+
+
+	};   // end pressDirectionKey()
+
+
+	var releaseDirectionKey = function ( key ) {
+	/*
+
+	*/
+
+
+	};   // end releaseDirectionKey()
+
+
+	var move = function ( direction ) {
+	/*
+
+	*/
+		// ??: Is this needed or can I just use player.whatever?
+		var self = this;
+
+
+		// When key is pressed, speed is changed using speedMagnitudes
+		// and direction
 
 
 	};  // End Player.move()
@@ -65,6 +102,8 @@ multiple players
 	/*
 
 	*/
+
+		// Add one to shots fired count
 
 
 	};  // End Player.attack()
@@ -94,10 +133,77 @@ multiple players
 	*/
 
 		// Done continuously, whether moving or not, to catch input
-		move();
+		// move();
 
 
 	};  // End Player.update()
+
+
+	// ============
+	// INPUT
+	// ============
+	player.keypress = new window.keypress.Listener();
+
+	player.bindInput = function ( keyCombo, keyDown, keyUp, thisObj ) {
+	/* ( str, func, func, {} ) -> {}
+
+	*/
+		var obj = thisObj;
+
+		obj.keypress.register_combo({
+		    "keys"              : keyCombo,
+		    "on_keydown"        : keyDown,
+		    "on_keyup"          : keyUp,
+		    // "on_release"        : null,
+		    "this"              : obj,
+		    "prevent_default"   : true,
+		    // "prevent_repeat"    : false,
+		    // "is_unordered"      : false,
+		    // "is_counting"       : false,
+		    // "is_exclusive"      : false,
+		    // "is_solitary"       : false,
+		    // "is_sequence"       : false
+		});
+
+		return thisObj;
+
+	};  //  end player.bindInput()
+
+
+	// ================
+	// SET UP PLAYER (with inputs)
+	// ================
+	// EVENT LISTENERS
+	// for ( var keyi = 0; keyi < player.leftKeyList.length; keyi++ ) {
+
+	// 	player.bindInput( player.leftKeyList[ keyi ],
+	// 		function () { player.changeDirection( "left" ); },
+	// 		function () { player.changeDirection( "none" ); },
+	// 		player
+	// 	);
+
+	// }; // end for ( leftKey )
+
+	// for ( var keyi = 0; keyi < player.rightKeyList.length; keyi++ ) {
+
+	// 	player.bindInput( player.rightKeyList[ keyi ],
+	// 		function () { player.changeDirection( "right" ); },
+	// 		function () { player.changeDirection( "none" ); },
+	// 		player
+	// 	);
+
+	// }; // end for ( rightKey )
+
+
+	// for ( var keyi = 0; keyi < player.fireKeyList.length; keyi++ ) {
+
+	// 	player.bindInput( player.fireKeyList[ keyi ],
+	// 		function () { player.shoot( player.bounderHTML ); },
+	// 		function () {  },
+	// 		player
+	// 	);
+
+	// }; // end for ( fireKey )
 
 
 	// =================

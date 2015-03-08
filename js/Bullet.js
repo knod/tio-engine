@@ -13,7 +13,7 @@ Bullets object, controlling behavior of bullets
 	bullet.objType		= "bullet";
 	bullet.shooterType	= parentType;
 	bullet.id 			= "bullet-" + id;
-	bullet.fieldHTML	= fieldHTML;
+	bullet.bounderHTML	= fieldHTML;
 
 	bullet.html 		= null;
 
@@ -28,8 +28,9 @@ Bullets object, controlling behavior of bullets
 
 	Does not append the object
 	*/
+		var html = document.createElement( "div" );
 
-
+		return html;
 	};  // End buildHTML()
 
 

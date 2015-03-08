@@ -2,7 +2,7 @@
 
 'use strict'
 
-var Mob = function ( id, type, width, colNum, rowNum, fieldHTML ) {
+var Mob = function ( idNum, type, rowHeight, rowNum, colWidth, colNum, fieldHTML ) {
 /*
 
 Mobs object, controlling behavior of AI
@@ -13,17 +13,22 @@ Mobs object, controlling behavior of AI
 	var mob = this;
 
 	// Properties are so that they can be adjusted from the outside
+	mob.idNum 		= idNum;
 	mob.objType		= "mob";
 	mob.mobType		= type;
-	mob.id 			= "mob-" + id;
-	mob.fieldHTML	= fieldHTML;
+	mob.bounderHTML	= fieldHTML;
 
-	mob.colNum 		= colNum;
+	// Doesn't really need rowHeight property, but I don't want it to
+	// get mentally lost in the noise. Determines style.top
+	mob.rowHeight 	= rowHeight;
 	mob.rowNum		= rowNum;
+	// Same
+	mob.colWidth 	= colWidth;
+	mob.colNum 		= colNum;
 
 	mob.html 		= null;
 
-	// Both handed in by Rows parent object?
+	// Both handled in by Rows parent object?
 	mob.speedX 		= 0;  // to be based on width and game field width?
 	mob.speedY		= 0;
 
@@ -33,34 +38,27 @@ Mobs object, controlling behavior of AI
 	var buildHTML = function () {
 	/*
 
-	Does not append the object
+	Does not add the html property to the object
 	*/
+		var html = document.createElement( "div" );
+		html.className 	= "mob mob" + mob.mobType;
+		html.id 		= "mob_" + mob.idNum;
 
+		var topPos 		= mob.rowHeight * mob.rowNum;
+		html.style.top 	= topPos + "px";
 
+		var leftPos 	= mob.colWidth * mob.colNum;
+		html.style.left = leftPos + "px";
+
+		mob.bounderHTML.appendChild( html );
+
+		return html;
 	};  // End buildHTML()
 
 
 	// =================
 	// RUNTIME FUNCTIONS
 	// =================
-	mob.moveX = function () {
-	/*
-
-	*/
-
-
-	};  // End Mob.moveX()
-
-
-	mob.moveY = function () {
-	/*
-
-	*/
-
-
-	};  // End Mob.moveY()
-
-
 	mob.attack = function () {
 	/*
 
@@ -83,6 +81,8 @@ Mobs object, controlling behavior of AI
 	/*
 
 	*/
+
+		// Add to death count and hits count
 
 
 	};  // End Mob.die()

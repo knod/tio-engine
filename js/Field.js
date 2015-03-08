@@ -2,7 +2,7 @@
 
 'use strict'
 
-var Field = function ( id, boardHTML ) {
+var Field = function ( idNum, boardHTML ) {
 /*
 
 Field object, handling its rows, bullets, and player(s)
@@ -15,11 +15,12 @@ Field object, handling its rows, bullets, and player(s)
 
 	field.html 			= null;
 	field.boardHTML 	= boardHTML;
+	field.idNum 		= idNum;
 
-	field.rows 			= new Rows( 1, self.html, 5, 11 );
-	field.player 		= new Player( 1, self.html );
+	field.rows 			= null;
+	field.player 		= null;
 	// Bullets will have a shooter type to guide collision responses
-	filed.bullets 		= [];
+	field.bullets 		= [];
 
 	// ??: Should this be in the board for easier stats stuff?
 	// Or in rows to get closer to mobs?
@@ -28,6 +29,17 @@ Field object, handling its rows, bullets, and player(s)
 	};
 
 
+	var buildHTML = function () {
+	/*
+
+	Does not append the object
+	*/
+		var html 		= document.createElement( "div" );
+		html.className 	= "field";
+		html.id 		= "field_" + self.idNum;
+
+		return html;
+	};  // End buildHTML()
 
 
 	// =================
@@ -61,9 +73,29 @@ Field object, handling its rows, bullets, and player(s)
 	field.update = function () {
 	/*
 
+	Update all the objects on this field, handle collisions, death, etc,
+	return stats and state that the board needs to be aware of.
 	*/
+		var self = this;
 
+		player_ = self.player;
+		rows_ 	= self.rows;
+
+		// player movement
+		// bullet movement
 		// Trigger each row's movement at the right time, staggered
+
+		// Update collisions
+
+
+		// Return all the stats stuff and game over indicator
+		var gameState = {
+			endCondition 	: "none",
+			lives			: player_.lives,
+			shots			: player_.shots,
+			// hits 			: rows_.hits,
+			deaths 			: { 1: 0, 	2: 0, 	3: 0, 	x: 0 }
+		}
 
 
 	};  // End Field.update()
@@ -72,8 +104,17 @@ Field object, handling its rows, bullets, and player(s)
 	// =================
 	// INITIALIZATION
 	// =================
-	field.html = buildHTML();
+	field.html 		= buildHTML();
 	// Append html before constructing rows
+	// Create rows with their mobs (this will append the mobs
+		// to the field as well)
+
+	// Rows = function ( idNum, fieldHTML, numRows, numCols )
+	field.rows 		= new Rows( 1, field.html, 5, 11 );
+	// Create player
+	field.player 	= new Player( 1, field.html );
+
+	field.boardHTML.appendChild( field.html );
 
 	// ===========
 	// END
