@@ -21,15 +21,23 @@ multiple boards
 		// board.paused 		= false;
 
 	board.field 		= null;
-		// board.stats 		= new Stats( id, boardHTML );
-		// Not sure if we're going to use points at all
-		// board.mobTypes		= {
-		// 	1: { points: 10 },
-		// 	2: { points: 20 },
-		// 	3: { points: 30 },
-		// 	// This is a base value, will be randomized
-		// 	x: { points: 100 }
-		// };
+	board.stats 		= null;
+	// Not sure if we're going to use points at all
+	// This should be in here because Stats needs it too
+	board.mobTypes		= {
+		1: "1",
+		2: "2",
+		3: "3",
+		// This is a base value, will be randomized
+		x: "x"
+	};
+	// board.mobTypes		= {
+	// 	1: { points: 10 },
+	// 	2: { points: 20 },
+	// 	3: { points: 30 },
+	// 	// This is a base value, will be randomized
+	// 	x: { points: 100 }
+	// };
 
 		// board.paused 		= false;
 		// board.elapsedPause 	= 0;
@@ -148,8 +156,14 @@ multiple boards
 	// =================
 	board.html 	= buildHTML();
 	document.body.appendChild( board.html );
-	
+
+	board.stats = new Stats( idNum, board.html, board.mobTypes );
+	board.html.appendChild( board.stats.topbar );
+
 	board.field = new Field( idNum, board.html );
+	// Field appends itself
+
+	board.html.appendChild( board.stats.bottombar );
 
 	// ===========
 	// END

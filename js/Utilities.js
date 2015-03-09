@@ -1,13 +1,13 @@
-	// /* Created 03/01/15 */
+/* Created 03/01/15 */
 
-	// 'use strict'
+'use strict'
 
-	// var Util = {
-	// /*
-	// An object that contains various utilities that many objects will need.
-	// Its properties are accessible to everyone.
-	// */
-	// }
+var Util = {
+/*
+An object that contains various utilities that many objects will need.
+Its properties are accessible to everyone.
+*/
+};
 
 
 	// // ==============
@@ -279,27 +279,27 @@
 	// };  // End Util.percentToPx()
 
 
-	// // http://stackoverflow.com/questions/5588465/javascript-parse-time-minutesseconds-from-miliseconds
-	// Util.msToMMSSMsMs = function ( msValue ) {
-	// /* ( int or str ) -> str
+// http://stackoverflow.com/questions/5588465/javascript-parse-time-minutesseconds-from-miliseconds
+Util.msToMMSSMsMs = function ( msValue ) {
+/* ( int or str ) -> str
 
-	// Given a string or int representing milliseconds of time, such
-	// as Date.now(), returns a string of the type mins:secs.ms, for
-	// example 03:04.24
-	// */
-	// 	// Ensure we work with an integer
-	// 	var msInt	= parseInt( msValue, 10 );
-	// 	var min 	= parseInt( msInt/1000/60 );
-	// 	var sec 	= ( msInt/1000 ) % 60;
-	// 	// Reduce the remaining milliseconds to two decimal places
-	// 	sec 		= sec.toFixed(2);  // turns it into a string?
+Given a string or int representing milliseconds of time, such
+as Date.now(), returns a string of the type mins:secs.ms, for
+example 03:04.24
+*/
+	// Ensure we work with an integer
+	var msInt	= parseInt( msValue, 10 );
+	var min 	= parseInt( msInt/1000/60 );
+	var sec 	= ( msInt/1000 ) % 60;
+	// Reduce the remaining milliseconds to two decimal places
+	sec 		= sec.toFixed(2);  // turns it into a string?
 
-	// 	// Add leading zeros if they are needed
-	// 	if ( min < 10 ) { min = "0" + min; }
-	// 	if ( sec < 10 ) { sec = "0" + sec; }
+	// Add leading zeros if they are needed
+	if ( min < 10 ) { min = "0" + min; }
+	if ( sec < 10 ) { sec = "0" + sec; }
 
-	// 	return (min + ":" + sec)
-	// };  // End Util.mmToMMSS()
+	return (min + ":" + sec)
+};  // End Util.mmToMMSS()
 
 
-	// // End Util{}
+// End Util{}
