@@ -52,16 +52,24 @@ Mobs object, controlling behavior of AI
 		html.style.width 	= mobWidth + "px";
 		html.style.height 	= mobHeight + "px";
 
-		var topPos 		= rowHeight * mob.rowNum;
-		html.style.top 	= topPos + "px";
-		var leftPos 	= colWidth * mob.colNum;
-		html.style.left = leftPos + "px";
-
-		mob.bounderHTML.appendChild( html );
-
 		return html;
 	};  // End buildHTML()
 
+
+	var addToDOM = function ( elem ) {
+	/*
+
+	??: A function for the student to build?
+	*/
+
+		var topPos 		= rowHeight * mob.rowNum;
+		elem.style.top 	= topPos + "px";
+		var leftPos 	= colWidth * mob.colNum;
+		elem.style.left = leftPos + "px";
+
+		mob.bounderHTML.appendChild( elem );
+
+	};  // End addToDOM()
 
 	// =================
 	// RUNTIME FUNCTIONS
@@ -103,6 +111,7 @@ Mobs object, controlling behavior of AI
 	// INITIALIZATION
 	// =================
 	mob.html = buildHTML();
+	addToDOM( mob.html );
 
 
 	// ===========

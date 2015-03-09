@@ -106,10 +106,9 @@ Field object, handling its rows, bullets, and player(s)
 	// INITIALIZATION
 	// =================
 	field.html 		= buildHTML();
+	// Always append before creating further elements so the
+	// width and height properties can be used for calculations
 	field.boardHTML.appendChild( field.html );
-	// Append html before constructing rows
-	// Create rows with their mobs (this will append the mobs
-		// to the field as well)
 
 	// Rows = function ( idNum, fieldHTML, numRows, numCols )
 	field.rows 		= new Rows( 1, field.html, 5, 11 );

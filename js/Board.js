@@ -155,14 +155,15 @@ multiple boards
 	// INITIALIZATION
 	// =================
 	board.html 	= buildHTML();
+	// Always append before creating further elements so the
+	// width and height properties can be used for calculations
 	document.body.appendChild( board.html );
 
 	board.stats = new Stats( idNum, board.html, board.mobTypes );
-	board.html.appendChild( board.stats.topbar );
 
+	board.html.appendChild( board.stats.topbar );
 	board.field = new Field( idNum, board.html );
 	// Field appends itself
-
 	board.html.appendChild( board.stats.bottombar );
 
 	// ===========

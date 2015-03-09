@@ -51,7 +51,7 @@ in the topbar and bottombar, maybe sidebar.
 		// ------- The "X" that goes over their image, making them look dead
 		var exOut			= document.createElement( "div" );
 		exOut.className		= 'death-x';
-		// Temporary
+		// Temporary, is currently text, will be an image of an X
 		var xNode 			= document.createTextNode( 'X' );
 		exOut.appendChild( xNode );
 		// -------

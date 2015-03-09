@@ -34,6 +34,23 @@ Bullets object, controlling behavior of bullets
 	};  // End buildHTML()
 
 
+	var addToDOM = function ( elem ) {
+	/*
+
+	??: A function for the student to build?
+	*/
+
+		// Bullet should maybe start at middle of its shooter
+		var bulletCentered 	= 5;  // Yeah, needs calculation
+		elem.style.left 	= bulletCentered + "px";
+		var bulletY 		= 5;  // Top of shooter + own height
+		elem.style.bottom 	= bulletY + "px";
+
+		bullet.bounderHTML.appendChild( elem );
+
+	};  // End addtoDOM()
+
+
 	// =================
 	// RUNTIME FUNCTIONS
 	// =================

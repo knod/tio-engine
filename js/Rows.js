@@ -53,29 +53,6 @@ Everything is in pixels.
 
 		// };  // End buildMobCSS()
 
-	// Should each row have html?
-	var buildHTML = function () {
-	/*
-
-	??: Are mobs each in a row, rows moving all the mobs, and
-	yet have only one single list for all the mobs? Is that
-	neccessary the way we're going to do collisions currently?
-	*/
-		// var html = document.createElement( "div" );
-		// html.className 	= "rows";
-		// html.id 		= "rows_" + self.idNum;
-
-		// Create each row
-		// id = "row_"+ self.idNum + "_" + rowNum;
-		var allMobs_ = rows.mobs;
-
-		for ( var mobNum = 0; mobNum < allMobs_; mobNum++ ) {
-			rows.bounderHTML.appendChild( allMobs_[ mobNum ] );
-		}
-
-		return html;
-	};  // End buildHTML()
-
 
 	var buildMobs = function ( rowHeight, colWidth, bounderHTML ) {
 	/*
@@ -93,10 +70,11 @@ Everything is in pixels.
 				var idNum = colNum + (numRows * rowNum);
 				console.log(idNum);
 
+				// Each Mob adds itself to the DOM on its creation
 				var mob = new Mob( idNum, rowMap[rowNum],
 					rowHeight, rowNum,
 					colWidth, colNum,
-					rows.bounderHTML)
+					rows.bounderHTML );
 
 				mobs.push( mob );
 			}

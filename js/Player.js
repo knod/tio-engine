@@ -61,15 +61,26 @@ multiple players
 		// Noticeably bigger than mobs
 		html.style.width 	= player.width + "px";
 		html.style.height 	= "20px";
-		// Possition should maybe start at middle?
-		var playerCentered 	= (fieldHTML.clientWidth / 2) - (player.width / 2);
-		html.style.left 	= playerCentered + "px";
-		html.style.bottom 	= "0px";
-
-		player.bounderHTML.appendChild( html );
 
 		return html;
 	};  // End buildHTML()
+
+
+	var addToDOM = function ( elem ) {
+	/*
+
+	??: A function for the student to build?
+	*/
+
+		// Player should maybe start at middle?
+		var playerCentered 	= (fieldHTML.clientWidth / 2) - (player.width / 2);
+		elem.style.left 	= playerCentered + "px";
+		elem.style.bottom 	= "0px";
+
+		player.bounderHTML.appendChild( elem );
+
+
+	};  // End addtoDOM()
 
 
 	// =================
@@ -220,6 +231,7 @@ multiple players
 	// INITIALIZATION
 	// =================
 	player.html = buildHTML();
+	addToDOM( player.html );
 
 
 	// =================

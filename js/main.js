@@ -2,6 +2,7 @@
 
 'use strict'
 
+// To access for testing
 var boards;
 
 window.addEventListener( "load", function () {
@@ -11,7 +12,7 @@ Runs all the boards for the page, compares their values, etc.
 */
 
 	// TODO: Fetch number of players dynamically
-	var numPlayers		= 1;
+	var numPlayers = 1;
 
 	// var boards 			= [];
 	boards = [];
