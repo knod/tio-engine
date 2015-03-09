@@ -7,7 +7,7 @@ var Bullet = function ( id, shooterType, fieldHTML ) {
 
 Bullets object, controlling behavior of bullets
 */
-	var bullet = this;
+	var bullet = new Entity();
 
 	// Properties are so that they can be adjusted from the outside
 	bullet.objType		= "bullet";

@@ -10,7 +10,7 @@ Mobs object, controlling behavior of AI
 ??: How about speed? Would need horizontal speed for collision checks?
 ??: Need vertical speed for collision checks?
 */
-	var mob = this;
+	var mob = new Entity();
 
 	// Properties are so that they can be adjusted from the outside
 	// Variables are things that won't ever be changed or searched for outside of this Mob

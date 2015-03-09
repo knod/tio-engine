@@ -9,60 +9,88 @@ Entity object from which other entities are created
 */
 	var entity = this;
 
-		// entity.moveX = function ( xSpeed ) {
-		// /* ( num ) -> Obj
+	entity.moveX = function ( xSpeed ) {
+	/* ( num ) -> str
 
-		// If move won't put this object out of bounds, moves object
-		// on the x-axis at the given speed (positive or negative)
+	If move won't put this object out of bounds, moves object
+	on the x-axis at the given speed (positive or negative)
 
-		// WARNING: object must have a .bounderHTML property
-		// */
-		// 	var self 		= this;
-		// 	var selfHTML_ 	= self.html;
+	Returns what edge was hit: left, right, or none
 
-		// 	// If it will go out of bounds, don't move
-		// 	var stopMovement = Util.willLeaveBoundsX( selfHTML_, self.bounderHTML, xSpeed );
+	WARNING: object must have a .bounderHTML property
+	*/
+		var self 		= this;
+		var selfHTML_ 	= self.html;
 
-		// 	if ( stopMovement === true ) {
+		// To compare to which edge is hit
+		var towardsWhichEdge = "not moving";
+		if ( xSpeed < 0 ) { towardsWhichEdge = "left"; }
+		else if ( xSpeed > 0 ) { towardsWhichEdge = "right"; }
 
-		// 		console.trace( "Entity has hit its bounds." );
+		// If it will go out of bounds, don't move
+		// Possible values: "none", "right", "left"
+		var edgeHit = Util.whichEdgeAtSpeedX( selfHTML_, self.bounderHTML, xSpeed );
 
-		// 	} else {
-		// 		// Move the correct amount in the correct direction
-		// 		var offsetLeft 	= selfHTML_.offsetLeft,
-		// 			newLeft 	= offsetLeft + xSpeed;
+		// If the edge we're heading towards is hit, don't move, print a message
+		if ( edgeHit === towardsWhichEdge ) {
+			console.log( "Entity has hit its bounds going towards the " + towardsWhichEdge + " edge." );
 
-		// 		selfHTML_.style.left = newLeft + "px";
-		// 	}
+		} else {
+			// Move the correct amount in the correct direction
+			var offsetLeft 	= selfHTML_.offsetLeft,
+				newLeft 	= offsetLeft + xSpeed;
 
-		// 	return self;
-		// };  // End Entity.moveX()
+			selfHTML_.style.left = newLeft + "px";
+		}
+
+		return edgeHit;
+	};  // End Entity.moveX()
 
 
-		// entity.moveY = function ( ySpeed ) {
-		// /* ( num ) -> Obj
+	entity.moveY = function ( ySpeed ) {
+	/* ( num ) -> str
 
-		// If move won't put this object out of bounds, moves object
-		// on the y-axis at the given speed (positive or negative)
+	If move won't put this object out of bounds, moves object
+	on the y-axis at the given speed (positive or negative)
 
-		// WARNING: object must have a .bounderHTML property
-		// */
-		// 	var self 		= this;
-		// 	var selfHTML_ 	= self.html;
+	Returns what edge was hit: top, bottom, or none
 
-		// 	// If it will go out of bounds, don't allow it to move
-		// 	var stopMovement = Util.willLeaveBoundsY( selfHTML_, self.bounderHTML, ySpeed );
+	WARNING: object must have a .bounderHTML property
+	*/
+		var self 		= this;
+		var selfHTML_ 	= self.html;
 
-		// 	if ( stopMovement !== true ) {
-		// 		// Move the element the correct amount in the correct direction
-		// 		var offsetTop 	= selfHTML_.offsetTop,
-		// 			newTop 		= offsetTop + ySpeed;
+		// To compare to which edge is hit
+		var towardsWhichEdge = "not moving";
+		if ( xSpeed < 0 ) { towardsWhichEdge = "top"; }
+		else if ( xSpeed > 0 ) { towardsWhichEdge = "bottom"; }
 
-		// 		selfHTML_.style.top = newTop + "px";
-		// 	}
+		// If it will go out of bounds, don't allow it to move
+		var edgeHit = Util.whichEdgeAtSpeedY( selfHTML_, self.bounderHTML, ySpeed );
 
-		// 	return self;
-		// };  // End Entity.moveY()
+		// If the edge we're heading towards is hit, don't move, print a message
+		if ( edgeHit === towardsWhichEdge ) {
+			console.log( "Entity has hit its bounds going towards the " + towardsWhichEdge + " edge." );
+
+		} else {
+			// Move the correct amount in the correct direction
+			var offsetTop 	= selfHTML_.offsetTop,
+				newTop 		= offsetTop + ySpeed;
+
+			selfHTML_.style.top = newTop + "px";
+		}
+
+
+		// if ( edgeHit === towardsWhichEdge ) {
+		// 	// Move the element the correct amount in the correct direction
+		// 	var offsetTop 	= selfHTML_.offsetTop,
+		// 		newTop 		= offsetTop + ySpeed;
+
+		// 	selfHTML_.style.top = newTop + "px";
+		// }
+
+		return edgeHit;
+	};  // End Entity.moveY()
 
 
 		// // entity.move = function ( boundingElem, speedVectors ) {
