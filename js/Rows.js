@@ -68,7 +68,6 @@ Everything is in pixels.
 			for ( var colNum = 0; colNum < numCols; colNum++ ) {
 				// cell# = base + col + (row * numCols)
 				var idNum = colNum + (rowNum * numCols); // this isn't working for some reason
-				console.log(idNum);
 
 				// Each Mob adds itself to the DOM on its creation
 				var mob = new Mob( idNum, rowMap[rowNum],

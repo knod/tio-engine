@@ -62,8 +62,8 @@ Entity object from which other entities are created
 
 		// To compare to which edge is hit
 		var towardsWhichEdge = "not moving";
-		if ( xSpeed < 0 ) { towardsWhichEdge = "top"; }
-		else if ( xSpeed > 0 ) { towardsWhichEdge = "bottom"; }
+		if ( ySpeed < 0 ) { towardsWhichEdge = "top"; }
+		else if ( ySpeed > 0 ) { towardsWhichEdge = "bottom"; }
 
 		// If it will go out of bounds, don't allow it to move
 		var edgeHit = Util.whichEdgeAtSpeedY( selfHTML_, self.bounderHTML, ySpeed );

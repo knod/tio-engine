@@ -149,9 +149,9 @@ given the current x speed (given in pixels) of the innerElem
 
 ??: Allow speed to be passed in as str with units, then behave accordingly?
 */
-	var edgeHit = none;
+	var edgeHit = "none";
 
-	var bufferX 	= xSpeed / 2;
+	var bufferX 	= xSpeed;
 
 	var innerRect 	= innerElem.getBoundingClientRect();
 	var outerRect 	= outerElem.getBoundingClientRect();
@@ -177,20 +177,20 @@ given the current y speed (given in pixels) of the innerElem
 
 ??: Allow speed to be passed in as str with units, then behave accordingly?
 */
-	var edgeHit = none;
+	var edgeHit = "none";
 
-	var bufferY 	= ySpeed / 2;
+	var bufferY 	= ySpeed;
 
 	var innerRect 	= innerElem.getBoundingClientRect();
 	var outerRect 	= outerElem.getBoundingClientRect();
 
-	var futureLeft 	= innerRect.top 	+ bufferY,
-		futureRight = innerRect.bottom 	+ bufferY
+	var futureTop 		= innerRect.top 	+ bufferY,
+		futureBottom 	= innerRect.bottom 	+ bufferY
 	;  // end vars
 
 	// Wish I had a visualization for this logic (past me: what did you mean?)
-	if 		( futureLeft  < outerRect.top  ) { edgeHit = "top";  }
-	else if ( futureRight > outerRect.bottom ) { edgeHit = "bottom"; }
+	if 		( futureTop  	< outerRect.top  ) 	{ edgeHit = "top";  	}
+	else if ( futureBottom 	> outerRect.bottom ) 	{ edgeHit = "bottom"; 	}
 
 	return edgeHit;
 };  // End Util.whichEdgeAtSpeedY()

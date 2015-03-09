@@ -2,7 +2,7 @@
 
 'use strict'
 
-var Player = function ( id, fieldHTML ) {
+var Player = function ( idNum, fieldHTML ) {
 /*
 
 Player object, hopefully decoupled enough to allow for
@@ -22,7 +22,9 @@ multiple players
 	player.html 			= null;
 
 	player.width 			= fieldHTML.clientWidth / 20;
-	// player.speedX 			= ( fieldHTML.clientWidth / player.width ) / 4;
+
+	player.currSpeedX 		= 0;
+	player.speedX 			= ( fieldHTML.clientWidth / player.width ) / 4;
 
 		// player.facing		 	= 0;  // Angle of the direction player is facing. Not needed for space invaders...
 		// player.moveAngle		= 0;  // Angle of direction of movement
