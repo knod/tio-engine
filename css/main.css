@@ -34,8 +34,11 @@ body {
 .board {
 	/*position: relative;*/
 	display: inline-block;
-	width: 35rem;
-	height: 30rem;
+	/*width: 35rem;
+	height: 30rem;*/
+	width: 560px;
+	/*height: 480px;*/
+	height: auto;
 }
 
 /*---- STATS ----*/
@@ -64,35 +67,37 @@ body {
 /*---- FIELD ----*/
 .field {
 	display: inline-block;
-	width: 35rem;  /* percent of board */
-	height: 25rem;
+	/*width: 35rem;   percent of board 
+	height: 25rem;*/
+	width: 560px;
+	height: 400px;
 }
 
 .player {
-	width: 4%;  /* Percent of field width? */
-	height: 4%;  /* How to make objects square? */
+	/* width: 4%;  /* Percent of field width? */
+	/* height: 4%;  /* How to make objects square? */
 }
 
 .row {
 	/* Should match JS */
-	width: 88%;
-	height: 8%;
+	/*width: 88%;
+	height: 8%;*/
 }
 
 /* Have to decide if mobs should be in rows
 Really limits felxibility for mob types of things */
 .row.mob {
 	/* Should match in JS */
-	width: 4%;
+	/*width: 4%;*/
 	/* Specifically, this is bad if not in a row */
-	height: 50%;
+	/*height: 50%;*/
 }
 
 /* For now, have both options */
 .mob {
 	/* Should match in JS */
-	width: 4%;
-	height: 4%;
+	/*width: 4%;
+	height: 4%;*/
 }
 
 .bullet {

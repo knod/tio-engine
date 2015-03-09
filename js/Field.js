@@ -106,6 +106,7 @@ Field object, handling its rows, bullets, and player(s)
 	// INITIALIZATION
 	// =================
 	field.html 		= buildHTML();
+	field.boardHTML.appendChild( field.html );
 	// Append html before constructing rows
 	// Create rows with their mobs (this will append the mobs
 		// to the field as well)
@@ -115,7 +116,6 @@ Field object, handling its rows, bullets, and player(s)
 	// Create player
 	field.player 	= new Player( 1, field.html );
 
-	field.boardHTML.appendChild( field.html );
 
 	// ===========
 	// END

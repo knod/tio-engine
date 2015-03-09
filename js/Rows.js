@@ -5,7 +5,8 @@
 var Rows = function ( idNum, fieldHTML, numRows, numCols ) {
 /*
 
-Rows object, handling all its rows
+Rows object, handling all its mobs. Mobs will each move individually.
+Everything is in pixels.
 */
 	var rows = this;
 
@@ -13,19 +14,26 @@ Rows object, handling all its rows
 	// SETUP
 	// =================
 	rows.bounderHTML 	= fieldHTML;
-		// // ??: Should rows have html? Should mobs' html be in those rows?
-		// // ??: Should mobs move individually or with their rows?
-		// rows.htmlList		= [];
 	rows.idNum 			= idNum;
+	rows.mobs 			= [];
 
+	var rowMap 			= ["1", "2", "2", "3", "3"];
 	// Measurement values given in percents and should match CSS
 	// ??: Should I have pixel value too, to place each mob?
+	// Calculations needed for initial placement of mobs
+	var moveXDist 		= 5;
+	var xNumSteps 		= 16;
+	var moveYDist 		= 15;
+
 	var numRows 		= numRows;
-	var rowHeight		= 8;
-	var numCols			= numCols
-	var rowWidth		= 88;
-	var mobWidth		= 4;
-	rows.mobs 			= [];
+	// 32 for height 400px
+	var rowHeight		= (fieldHTML.clientHeight/25) * 2;
+	// var mobHeight 		= rowHeight/2;
+
+	// Needed for colWidth calculation. Each step is 5px right now.
+	var numCols			= numCols;
+	var rowWidth		= fieldHTML.clientWidth - (xNumSteps * moveXDist);
+	var colWidth 		= rowWidth / numCols;
 
 		// How to handle movement and speed?
 		// rows.speedX 		= 0;
@@ -70,7 +78,7 @@ Rows object, handling all its rows
 	};  // End buildHTML()
 
 
-	var buildMobs = function () {
+	var buildMobs = function ( rowHeight, colWidth, bounderHTML ) {
 	/*
 
 	Build the list of all mobs
@@ -79,8 +87,21 @@ Rows object, handling all its rows
 
 		// Mob = function ( idNum, type, rowHeight, rowNum, colWidth, colNum, fieldHTML )
 		// Mobs will append themselves to the bounderHTML
-		var mob1 = new Mob( rows.idNum, 1, 10, 2, 10, 5, rows.bounderHTML)
-		mobs.push( mob1 );
+		for ( var rowNum = 0; rowNum < rowMap.length; rowNum++ ) {
+
+			for ( var colNum = 0; colNum < numCols; colNum++ ) {
+				// cell# = base + col + (4 * row)
+				var idNum = colNum + (numRows * rowNum);
+				console.log(idNum);
+
+				var mob = new Mob( idNum, rowMap[rowNum],
+					rowHeight, rowNum,
+					colWidth, colNum,
+					rows.bounderHTML)
+
+				mobs.push( mob );
+			}
+		}
 
 		return mobs;
 	};  // End buildMobs
@@ -176,7 +197,7 @@ Rows object, handling all its rows
 	// =================
 	// INITIALIZATION
 	// =================
-	rows.mobs = buildMobs();
+	rows.mobs = buildMobs( rowHeight, colWidth, fieldHTML );
 
 	// ===========
 	// END

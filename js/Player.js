@@ -21,6 +21,9 @@ multiple players
 	player.bounderHTML		= fieldHTML;
 	player.html 			= null;
 
+	player.width 			= fieldHTML.clientWidth / 20;
+	// player.speedX 			= ( fieldHTML.clientWidth / player.width ) / 4;
+
 		// player.facing		 	= 0;  // Angle of the direction player is facing. Not needed for space invaders...
 		// player.moveAngle		= 0;  // Angle of direction of movement
 		// player.speed 			= 0;
@@ -53,8 +56,14 @@ multiple players
 	*/
 		var html = document.createElement( "div" );
 		html.className 		= 'object player';
-		html.dataset.left 	= "0";
-		html.style.left 	= "0rem";
+
+		// Noticeably bigger than mobs
+		html.style.width 	= player.width + "px";
+		html.style.height 	= "20px";
+		// Possition should maybe start at middle?
+		var playerCentered 	= (fieldHTML.clientWidth / 2) - (player.width / 2);
+		html.style.left 	= playerCentered + "px";
+		html.style.bottom 	= "0px";
 
 		player.bounderHTML.appendChild( html );
 

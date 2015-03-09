@@ -32,6 +32,8 @@ Mobs object, controlling behavior of AI
 	mob.speedY		= 0;
 
 	// Variables are things that won't ever be changed or searched for outside of this Mob
+	var mobWidth 	= colWidth/2.2;  // just a guess
+	var mobHeight 	= rowHeight/2;  // just a guess
 	
 
 	var buildHTML = function () {
@@ -41,11 +43,13 @@ Mobs object, controlling behavior of AI
 	*/
 		var html = document.createElement( "div" );
 		html.className 	= "mob mob" + mob.mobType;
-		html.id 		= "mob_" + mob.idNum;
+		html.id 		= "row_" + mob.rowNum + "col_" + mob.colNum;
+
+		html.style.width 	= mobWidth + "px";
+		html.style.height 	= mobHeight + "px";
 
 		var topPos 		= mob.rowHeight * mob.rowNum;
 		html.style.top 	= topPos + "px";
-
 		var leftPos 	= mob.colWidth * mob.colNum;
 		html.style.left = leftPos + "px";
 

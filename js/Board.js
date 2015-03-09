@@ -147,9 +147,10 @@ multiple boards
 	// INITIALIZATION
 	// =================
 	board.html 	= buildHTML();
+	document.body.appendChild( board.html );
+	
 	board.field = new Field( idNum, board.html );
 
-	document.body.appendChild( board.html );
 	// ===========
 	// END
 	// ===========
