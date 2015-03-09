@@ -11,8 +11,8 @@ Bullets object, controlling behavior of bullets
 
 	// Properties are so that they can be adjusted from the outside
 	bullet.objType		= "bullet";
-	bullet.shooterType	= parentType;
-	bullet.id 			= "bullet-" + id;
+	bullet.shooterType	= shooterType;
+	bullet.id 			= "bullet_" + id;
 	bullet.bounderHTML	= fieldHTML;
 
 	bullet.html 		= null;

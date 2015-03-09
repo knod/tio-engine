@@ -16,7 +16,7 @@ multiple players
 	// =================
 	// Properties are so that they can be adjusted from the outside
 	player.objType			= "player";
-	player.id 				= "player-" + id;
+	player.id 				= "player_" + id;
 	// Purposefully, the field object is not made accessible to its child
 	player.bounderHTML		= fieldHTML;
 	player.html 			= null;
@@ -56,6 +56,7 @@ multiple players
 	*/
 		var html = document.createElement( "div" );
 		html.className 		= 'object player';
+		html.id 			= player.id;
 
 		// Noticeably bigger than mobs
 		html.style.width 	= player.width + "px";

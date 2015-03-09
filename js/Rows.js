@@ -28,7 +28,6 @@ Everything is in pixels.
 	var numRows 		= numRows;
 	// 32 for height 400px
 	var rowHeight		= (fieldHTML.clientHeight/25) * 2;
-	// var mobHeight 		= rowHeight/2;
 
 	// Needed for colWidth calculation. Each step is 5px right now.
 	var numCols			= numCols;

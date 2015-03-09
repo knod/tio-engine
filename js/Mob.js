@@ -13,6 +13,8 @@ Mobs object, controlling behavior of AI
 	var mob = this;
 
 	// Properties are so that they can be adjusted from the outside
+	// Variables are things that won't ever be changed or searched for outside of this Mob
+
 	mob.html 		= null;
 	mob.idNum 		= idNum;
 	mob.objType		= "mob";
@@ -21,19 +23,18 @@ Mobs object, controlling behavior of AI
 
 	// Doesn't really need rowHeight property, but I don't want it to
 	// get mentally lost in the noise. Determines style.top
-	mob.rowHeight 	= rowHeight;
+	var rowHeight 	= rowHeight;
 	mob.rowNum		= rowNum;
 	// Same
-	mob.colWidth 	= colWidth;
+	var colWidth 	= colWidth;
 	mob.colNum 		= colNum;
+	var mobWidth 	= colWidth/2.2;  // just a guess
+	var mobHeight 	= rowHeight/2;  // just a guess
 
 	// Both handled in by Rows parent object?
 	mob.speedX 		= 0;  // to be based on width and game field width?
 	mob.speedY		= 0;
 
-	// Variables are things that won't ever be changed or searched for outside of this Mob
-	var mobWidth 	= colWidth/2.2;  // just a guess
-	var mobHeight 	= rowHeight/2;  // just a guess
 	
 
 	var buildHTML = function () {
@@ -42,15 +43,18 @@ Mobs object, controlling behavior of AI
 	Does not add the html property to the object
 	*/
 		var html = document.createElement( "div" );
+		// For placement and color
 		html.className 	= "mob mob" + mob.mobType;
+		// Not sure we need this, but maybe it will help
+		// This might need to be based on idNum, not sure
 		html.id 		= "row_" + mob.rowNum + "col_" + mob.colNum;
 
 		html.style.width 	= mobWidth + "px";
 		html.style.height 	= mobHeight + "px";
 
-		var topPos 		= mob.rowHeight * mob.rowNum;
+		var topPos 		= rowHeight * mob.rowNum;
 		html.style.top 	= topPos + "px";
-		var leftPos 	= mob.colWidth * mob.colNum;
+		var leftPos 	= colWidth * mob.colNum;
 		html.style.left = leftPos + "px";
 
 		mob.bounderHTML.appendChild( html );
