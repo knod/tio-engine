@@ -37,34 +37,34 @@ Bullets object, controlling behavior of bullets
 	// =================
 	// RUNTIME FUNCTIONS
 	// =================
-	// bullet.moveX = function () {};  // End Bullet.moveX()
+		// // bullet.moveX = function () {};  // End Bullet.moveX()
 
 
-	bullet.moveY = function () {
-	/*
+		// bullet.moveY = function () {
+		// /*
 
-	*/
-
-
-	};  // End Bullet.moveY()
+		// */
 
 
-	bullet.collideWith = function () {
-	/*
-
-	*/
+		// };  // End Bullet.moveY()
 
 
-	};  // End Bullet.collideWith()
+		// bullet.collideWith = function () {
+		// /*
+
+		// */
 
 
-	bullet.die = function () {
-	/*
-
-	*/
+		// };  // End Bullet.collideWith()
 
 
-	};  // End Bullet.die()
+		// bullet.die = function () {
+		// /*
+
+		// */
 
 
+		// };  // End Bullet.die()
+
+	return bullet;
 };  // End Bullet{}

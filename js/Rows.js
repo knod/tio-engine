@@ -13,9 +13,9 @@ Rows object, handling all its rows
 	// SETUP
 	// =================
 	rows.bounderHTML 	= fieldHTML;
-	// ??: Should rows have html? Should mobs' html be in those rows?
-	// ??: Should mobs move individually or with their rows?
-	rows.htmlList		= [];
+		// // ??: Should rows have html? Should mobs' html be in those rows?
+		// // ??: Should mobs move individually or with their rows?
+		// rows.htmlList		= [];
 	rows.idNum 			= idNum;
 
 	// Measurement values given in percents and should match CSS
@@ -27,24 +27,24 @@ Rows object, handling all its rows
 	var mobWidth		= 4;
 	rows.mobs 			= [];
 
-	// How to handle movement and speed?
-	rows.speedX 		= 0;
-	rows.speedY 		= 0;
-	rows.maxSpeedX 		= ( 100 - rowWidth ) / 16;
-	rows.maxSpeedY 		= 3.2;
-	rows.movePause 		= 0;
+		// How to handle movement and speed?
+		// rows.speedX 		= 0;
+		// rows.speedY 		= 0;
+		// rows.maxSpeedX 		= ( 100 - rowWidth ) / 16;
+		// rows.maxSpeedY 		= 3.2;
+		// rows.movePause 		= 0;
 
-	rows.shootPause  	= 0;
+		// rows.shootPause  	= 0;
 
-	// Include this? Can I even create css classes in js?
-	var buildMobCSS = function () {
-	/*
+		// // Include this? Can I even create css classes in js?
+		// var buildMobCSS = function () {
+		// /*
 
-	If possible, build the css for the mobs?
-	*/
+		// If possible, build the css for the mobs?
+		// */
 
 
-	};  // End buildMobCSS()
+		// };  // End buildMobCSS()
 
 	// Should each row have html?
 	var buildHTML = function () {
@@ -64,7 +64,6 @@ Rows object, handling all its rows
 
 		for ( var mobNum = 0; mobNum < allMobs_; mobNum++ ) {
 			rows.bounderHTML.appendChild( allMobs_[ mobNum ] );
-
 		}
 
 		return html;
@@ -90,89 +89,89 @@ Rows object, handling all its rows
 	// =================
 	// RUNTIME FUNCITONS
 	// =================
-	var moveX = function () {
-	/*
+		// var moveX = function () {
+		// /*
 
-	Staggered horizontal movement for mobs, by row
-	*/
-
-
-	};  // End moveX()
+		// Staggered horizontal movement for mobs, by row
+		// */
 
 
-	var moveY = function () {
-	/*
-
-	Staggered vertical movement for mobs, by row
-	*/
+		// };  // End moveX()
 
 
-	};  // End moveY()
+		// var moveY = function () {
+		// /*
+
+		// Staggered vertical movement for mobs, by row
+		// */
 
 
-	var needToChangeDirection = function () {
-	/*
-
-	Check if direction of movement needs to be changed
-	*/
+		// };  // End moveY()
 
 
-	};  // End needToChangeDirection()
+		// var needToChangeDirection = function () {
+		// /*
+
+		// Check if direction of movement needs to be changed
+		// */
 
 
-	var changeDirection = function () {
-	/*
-
-	Move down and set speed to the opposite
-	horizontal direction
-	*/
+		// };  // End needToChangeDirection()
 
 
-	};  // End changeDirection()
+		// var changeDirection = function () {
+		// /*
+
+		// Move down and set speed to the opposite
+		// horizontal direction
+		// */
 
 
-	var getRandomLowest = function () {
-	/*
-
-	Gets a random mob that is the lowest in its row
-	*/
-
-		// Get random mob and its column (that way we know we
-		//	get a column with a mob in it)
-		// Get the lowest mob in that row
+		// };  // End changeDirection()
 
 
-	};  // End getRandomLowest()
+		// var getRandomLowest = function () {
+		// /*
+
+		// Gets a random mob that is the lowest in its row
+		// */
+
+		// 	// Get random mob and its column (that way we know we
+		// 	//	get a column with a mob in it)
+		// 	// Get the lowest mob in that row
 
 
-	var triggerAttack = function () {
+		// };  // End getRandomLowest()
 
 
-	};  // End triggerAttack()
+		// var triggerAttack = function () {
 
 
-	var killDeadMobs = function () {
-	/*
-
-	Iterate through mobs, killing any that need killing
-	*/
-
-		// Increase approprate hits and death counts
+		// };  // End triggerAttack()
 
 
-	};  // End killDeadMobs()
+		// var killDeadMobs = function () {
+		// /*
+
+		// Iterate through mobs, killing any that need killing
+		// */
+
+		// 	// Increase approprate hits and death counts
 
 
-	rows.update = function () {
-	/*
+		// };  // End killDeadMobs()
 
-	*/
 
-		// Kill all mobs that have been marked as dead
-		// After an appropriate pause, trigger horizontal movement
-		// After an appropriate pause, trigger vertical movement
+		// rows.update = function () {
+		// /*
 
-	};
+		// */
+
+		// 	// Kill all mobs that have been marked as dead
+		// 	// After an appropriate pause, trigger horizontal movement
+		// 	// After an appropriate pause, trigger vertical movement
+
+		// };
 
 	// =================
 	// INITIALIZATION

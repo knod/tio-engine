@@ -17,16 +17,17 @@ Field object, handling its rows, bullets, and player(s)
 	field.boardHTML 	= boardHTML;
 	field.idNum 		= idNum;
 
+	field.rowMap 		= ["1", "2", "2", "3", "3"];
 	field.rows 			= null;
 	field.player 		= null;
-	// Bullets will have a shooter type to guide collision responses
-	field.bullets 		= [];
+		// // Bullets will have a shooter type to guide collision responses
+		// field.bullets 		= [];
 
-	// ??: Should this be in the board for easier stats stuff?
-	// Or in rows to get closer to mobs?
-	field.mobTypes 		= {
+		// // ??: Should this be in the board for easier stats stuff?
+		// // Or in rows to get closer to mobs?
+		// field.mobTypes 		= {
 
-	};
+		// };
 
 
 	var buildHTML = function () {
@@ -45,60 +46,60 @@ Field object, handling its rows, bullets, and player(s)
 	// =================
 	// RUNTIME FUNCITONS
 	// =================
-	field.updateCollisions = function ( objArrays ) {
-	/*
+		// field.updateCollisions = function ( objArrays ) {
+		// /*
 
-	Update all collisions, make a list of them, then,
-	at the end, send the signal for the or their parents
-	to clean house.
+		// Update all collisions, make a list of them, then,
+		// at the end, send the signal for the or their parents
+		// to clean house.
 
-	?? Should this be in the board so that the stats can
-	be updated more easily?
-	*/
+		// ?? Should this be in the board so that the stats can
+		// be updated more easily?
+		// */
 
-		// Collide each array to each other array, without repeats -
-		// like calculating factorials
+		// 	// Collide each array to each other array, without repeats -
+		// 	// like calculating factorials
 
-			// Collide each object to each other object without repeats
+		// 		// Collide each object to each other object without repeats
 
-		// Call the functions each object identified as their reaction
-		// Update their stats?
-		// Get rows to remove their dead mobs from their lists
-		// Remove bullets from lists
-		// Remove player?
+		// 	// Call the functions each object identified as their reaction
+		// 	// Update their stats?
+		// 	// Get rows to remove their dead mobs from their lists
+		// 	// Remove bullets from lists
+		// 	// Remove player?
 
-	};  // End Field.updateCollisions()
-
-
-	field.update = function () {
-	/*
-
-	Update all the objects on this field, handle collisions, death, etc,
-	return stats and state that the board needs to be aware of.
-	*/
-		var self = this;
-
-		player_ = self.player;
-		rows_ 	= self.rows;
-
-		// player movement
-		// bullet movement
-		// Trigger each row's movement at the right time, staggered
-
-		// Update collisions
+		// };  // End Field.updateCollisions()
 
 
-		// Return all the stats stuff and game over indicator
-		var gameState = {
-			endCondition 	: "none",
-			lives			: player_.lives,
-			shots			: player_.shots,
-			// hits 			: rows_.hits,
-			deaths 			: { 1: 0, 	2: 0, 	3: 0, 	x: 0 }
-		}
+		// field.update = function () {
+		// /*
+
+		// Update all the objects on this field, handle collisions, death, etc,
+		// return stats and state that the board needs to be aware of.
+		// */
+		// 	var self = this;
+
+		// 	player_ = self.player;
+		// 	rows_ 	= self.rows;
+
+		// 	// player movement
+		// 	// bullet movement
+		// 	// Trigger each row's movement at the right time, staggered
+
+		// 	// Update collisions
 
 
-	};  // End Field.update()
+		// 	// Return all the stats stuff and game over indicator
+		// 	var gameState = {
+		// 		endCondition 	: "none",
+		// 		lives			: player_.lives,
+		// 		shots			: player_.shots,
+		// 		// hits 			: rows_.hits,
+		// 		deaths 			: { 1: 0, 	2: 0, 	3: 0, 	x: 0 }
+		// 	}
+
+
+		// };  // End Field.update()
 
 
 	// =================

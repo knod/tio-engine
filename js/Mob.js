@@ -13,6 +13,7 @@ Mobs object, controlling behavior of AI
 	var mob = this;
 
 	// Properties are so that they can be adjusted from the outside
+	mob.html 		= null;
 	mob.idNum 		= idNum;
 	mob.objType		= "mob";
 	mob.mobType		= type;
@@ -25,8 +26,6 @@ Mobs object, controlling behavior of AI
 	// Same
 	mob.colWidth 	= colWidth;
 	mob.colNum 		= colNum;
-
-	mob.html 		= null;
 
 	// Both handled in by Rows parent object?
 	mob.speedX 		= 0;  // to be based on width and game field width?
@@ -59,37 +58,37 @@ Mobs object, controlling behavior of AI
 	// =================
 	// RUNTIME FUNCTIONS
 	// =================
-	mob.attack = function () {
-	/*
+		// mob.attack = function () {
+		// /*
 
-	*/
-
-
-	};  // End Mob.attack()
+		// */
 
 
-	mob.collideWith = function () {
-	/*
-
-	*/
+		// };  // End Mob.attack()
 
 
-	};  // End Mob.collideWith()
+		// mob.collideWith = function () {
+		// /*
+
+		// */
 
 
-	mob.die = function () {
-	/*
-
-	*/
-
-		// Add to death count and hits count
+		// };  // End Mob.collideWith()
 
 
-	};  // End Mob.die()
+		// mob.die = function () {
+		// /*
+
+		// */
+
+		// 	// Add to death count and hits count
 
 
-	// Does a mob's row handle all its updates?
-	// mob.update = function () {};  // End Mob.update()
+		// };  // End Mob.die()
+
+
+		// Does a mob's row handle all its updates?
+		// mob.update = function () {};  // End Mob.update()
 
 
 	// =================

@@ -21,27 +21,27 @@ multiple players
 	player.bounderHTML		= fieldHTML;
 	player.html 			= null;
 
-	player.facing		 	= 0;  // Angle of the direction player is facing. Not needed for space invaders...
-	player.moveAngle		= 0;  // Angle of direction of movement
-	player.speed 			= 0;
-	// Which one? ^^^ or vvv
-	player.speedX 			= 0;  // to be based on own width and game field width?
-	player.speedY 			= 0;
-	player.maxSpeedX 		= 1;
-	player.maxSpeedY 		= 0;
-	// Or...
-	player.velocities 		= { x: 0, y: 0 };
-	player.maxVelocitiesMagnitudes = { x: 1, y: 0 };
+		// player.facing		 	= 0;  // Angle of the direction player is facing. Not needed for space invaders...
+		// player.moveAngle		= 0;  // Angle of direction of movement
+		// player.speed 			= 0;
+		// // Which one? ^^^ or vvv
+		// player.speedX 			= 0;  // to be based on own width and game field width?
+		// player.speedY 			= 0;
+		// player.maxSpeedX 		= 1;
+		// player.maxSpeedY 		= 0;
+		// // Or...
+		// player.velocities 		= { x: 0, y: 0 };
+		// player.maxVelocitiesMagnitudes = { x: 1, y: 0 };
 
-	// Stats
-	player.lives 			= 3;  // if === 0, player is dead
-	player.shots 			= 0;
-	player.hits 			= 0;
+		// // Stats
+		// player.lives 			= 3;  // if === 0, player is dead
+		// player.shots 			= 0;
+		// player.hits 			= 0;
 
-	player.limits 			= {};  // { 0, field height - height }, { fieldwidth - width, field height - height }
+		// player.limits 			= {};  // { 0, field height - height }, { fieldwidth - width, field height - height }
 
-	// Variables are things that won't ever be changed or searched for outside of this Player
-	
+		// Variables are things that won't ever be changed or searched for outside of this Player
+		
 
 	// =================
 	// SETUP FUNCTIONS
@@ -65,145 +65,145 @@ multiple players
 	// =================
 	// RUNTIME FUNCTIONS
 	// =================
-	var pressDirectionKey = function ( key ) {
-	/*
+		// var pressDirectionKey = function ( key ) {
+		// /*
 
-	*/
-
-
-	};   // end pressDirectionKey()
+		// */
 
 
-	var releaseDirectionKey = function ( key ) {
-	/*
-
-	*/
+		// };   // end pressDirectionKey()
 
 
-	};   // end releaseDirectionKey()
+		// var releaseDirectionKey = function ( key ) {
+		// /*
+
+		// */
 
 
-	var move = function ( direction ) {
-	/*
-
-	*/
-		// ??: Is this needed or can I just use player.whatever?
-		var self = this;
+		// };   // end releaseDirectionKey()
 
 
-		// When key is pressed, speed is changed using speedMagnitudes
-		// and direction
+		// var move = function ( direction ) {
+		// /*
+
+		// */
+		// 	// ??: Is this needed or can I just use player.whatever?
+		// 	var self = this;
 
 
-	};  // End Player.move()
+		// 	// When key is pressed, speed is changed using speedMagnitudes
+		// 	// and direction
 
 
-	var attack = function () {
-	/*
-
-	*/
-
-		// Add one to shots fired count
+		// };  // End Player.move()
 
 
-	};  // End Player.attack()
+		// var attack = function () {
+		// /*
+
+		// */
+
+		// 	// Add one to shots fired count
 
 
-	player.collideWith = function () {
-	/*
-
-	*/
+		// };  // End Player.attack()
 
 
-	};  // End bullet.collideWith()
+		// player.collideWith = function () {
+		// /*
+
+		// */
 
 
-	player.die = function () {
-	/*
-
-	*/
+		// };  // End bullet.collideWith()
 
 
-	};  // End Player.die()
+		// player.die = function () {
+		// /*
+
+		// */
 
 
-	player.update = function () {
-	/*
-
-	*/
-
-		// Done continuously, whether moving or not, to catch input
-		// move();
+		// };  // End Player.die()
 
 
-	};  // End Player.update()
+		// player.update = function () {
+		// /*
+
+		// */
+
+		// 	// Done continuously, whether moving or not, to catch input
+		// 	// move();
 
 
-	// ============
-	// INPUT
-	// ============
-	player.keypress = new window.keypress.Listener();
-
-	player.bindInput = function ( keyCombo, keyDown, keyUp, thisObj ) {
-	/* ( str, func, func, {} ) -> {}
-
-	*/
-		var obj = thisObj;
-
-		obj.keypress.register_combo({
-		    "keys"              : keyCombo,
-		    "on_keydown"        : keyDown,
-		    "on_keyup"          : keyUp,
-		    // "on_release"        : null,
-		    "this"              : obj,
-		    "prevent_default"   : true,
-		    // "prevent_repeat"    : false,
-		    // "is_unordered"      : false,
-		    // "is_counting"       : false,
-		    // "is_exclusive"      : false,
-		    // "is_solitary"       : false,
-		    // "is_sequence"       : false
-		});
-
-		return thisObj;
-
-	};  //  end player.bindInput()
+		// };  // End Player.update()
 
 
-	// ================
-	// SET UP PLAYER (with inputs)
-	// ================
-	// EVENT LISTENERS
-	// for ( var keyi = 0; keyi < player.leftKeyList.length; keyi++ ) {
+		// // ============
+		// // INPUT
+		// // ============
+		// player.keypress = new window.keypress.Listener();
 
-	// 	player.bindInput( player.leftKeyList[ keyi ],
-	// 		function () { player.changeDirection( "left" ); },
-	// 		function () { player.changeDirection( "none" ); },
-	// 		player
-	// 	);
+		// player.bindInput = function ( keyCombo, keyDown, keyUp, thisObj ) {
+		// /* ( str, func, func, {} ) -> {}
 
-	// }; // end for ( leftKey )
+		// */
+		// 	var obj = thisObj;
 
-	// for ( var keyi = 0; keyi < player.rightKeyList.length; keyi++ ) {
+		// 	obj.keypress.register_combo({
+		// 	    "keys"              : keyCombo,
+		// 	    "on_keydown"        : keyDown,
+		// 	    "on_keyup"          : keyUp,
+		// 	    // "on_release"        : null,
+		// 	    "this"              : obj,
+		// 	    "prevent_default"   : true,
+		// 	    // "prevent_repeat"    : false,
+		// 	    // "is_unordered"      : false,
+		// 	    // "is_counting"       : false,
+		// 	    // "is_exclusive"      : false,
+		// 	    // "is_solitary"       : false,
+		// 	    // "is_sequence"       : false
+		// 	});
 
-	// 	player.bindInput( player.rightKeyList[ keyi ],
-	// 		function () { player.changeDirection( "right" ); },
-	// 		function () { player.changeDirection( "none" ); },
-	// 		player
-	// 	);
+		// 	return thisObj;
 
-	// }; // end for ( rightKey )
+		// };  //  end player.bindInput()
 
 
-	// for ( var keyi = 0; keyi < player.fireKeyList.length; keyi++ ) {
+		// ================
+		// SET UP PLAYER (with inputs)
+		// ================
+		// EVENT LISTENERS
+		// for ( var keyi = 0; keyi < player.leftKeyList.length; keyi++ ) {
 
-	// 	player.bindInput( player.fireKeyList[ keyi ],
-	// 		function () { player.shoot( player.bounderHTML ); },
-	// 		function () {  },
-	// 		player
-	// 	);
+		// 	player.bindInput( player.leftKeyList[ keyi ],
+		// 		function () { player.changeDirection( "left" ); },
+		// 		function () { player.changeDirection( "none" ); },
+		// 		player
+		// 	);
 
-	// }; // end for ( fireKey )
+		// }; // end for ( leftKey )
+
+		// for ( var keyi = 0; keyi < player.rightKeyList.length; keyi++ ) {
+
+		// 	player.bindInput( player.rightKeyList[ keyi ],
+		// 		function () { player.changeDirection( "right" ); },
+		// 		function () { player.changeDirection( "none" ); },
+		// 		player
+		// 	);
+
+		// }; // end for ( rightKey )
+
+
+		// for ( var keyi = 0; keyi < player.fireKeyList.length; keyi++ ) {
+
+		// 	player.bindInput( player.fireKeyList[ keyi ],
+		// 		function () { player.shoot( player.bounderHTML ); },
+		// 		function () {  },
+		// 		player
+		// 	);
+
+		// }; // end for ( fireKey )
 
 
 	// =================
