@@ -11,6 +11,9 @@ in the topbar and bottombar, maybe sidebar.
 
 	var stats = this;
 
+	// =================
+	// SETUP
+	// =================
 	stats.container 	= containerHTML;
 
 	stats.topbar		= null;
@@ -18,10 +21,10 @@ in the topbar and bottombar, maybe sidebar.
 	stats.sidebar		= null;
 
 	// All the numbers and counts, etc. that will need to be updated
-	stats.mysterious	= null;
-	stats.other1		= null;
-	stats.other2		= null;
-	stats.other3		= null;
+	stats.mobX			= null;
+	stats.mob1			= null;
+	stats.mob2			= null;
+	stats.mob3			= null;
 	stats.elapsedTime	= null;
 
 	stats.lives			= null;
@@ -40,8 +43,8 @@ in the topbar and bottombar, maybe sidebar.
 	*/
 		var self = this;
 
-		var outerClassNames	= 'stat kill-count mob' + type;
-		var iconClassNames	= 'object mob' + type;
+		var outerClassNames	= "stat kill-count mob" + type;
+		var iconClassNames	= "object mob" + type;
 		// -------
 		var outer			= document.createElement( "div" );
 		outer.className		= outerClassNames;
@@ -50,14 +53,14 @@ in the topbar and bottombar, maybe sidebar.
 		icon.className		= iconClassNames;
 		// ------- The "X" that goes over their image, making them look dead
 		var exOut			= document.createElement( "div" );
-		exOut.className		= 'death-x';
+		exOut.className		= "death-x";
 		// Temporary, is currently text, will be an image of an X
-		var xNode 			= document.createTextNode( 'X' );
+		var xNode 			= document.createTextNode( "X" );
 		exOut.appendChild( xNode );
 		// -------
 		var countArea		= document.createElement( "div" );
-		countArea.className	= 'death-count';
-		var countNode 		= document.createTextNode( '0' );
+		countArea.className	= "death-count";
+		var countNode 		= document.createTextNode( "0" );
 		countArea.appendChild( countNode );
 
 		// -------
@@ -65,7 +68,7 @@ in the topbar and bottombar, maybe sidebar.
 		outer.appendChild( icon );
 		outer.appendChild( countArea );
 
-		var propName = "" + type.class;
+		var propName = "mob" + type;
 
 		// Hide mystery mob at the start
 		if ( type === "x" ) {
@@ -123,15 +126,13 @@ in the topbar and bottombar, maybe sidebar.
 		var deathRow		= document.createElement( "div" );
 		deathRow.className 	= "death-row";
 		// Maybe get these passed in from Board
-		var mysterious 		= self.buildKillCount( mobTypes["x"] );
-		var other1 			= self.buildKillCount( mobTypes["1"] );
-		var other2 			= self.buildKillCount( mobTypes["2"] );
-		var other3 			= self.buildKillCount( mobTypes["3"] );
+		for ( var mobi = 0; mobi < mobTypes.length; mobi++ ) {
 
-		deathRow.appendChild( mysterious );
-		deathRow.appendChild( other1 );
-		deathRow.appendChild( other2 );
-		deathRow.appendChild( other3 );
+			var type 		= mobTypes[ mobi ];
+			var deathCount 	= self.buildKillCount( type );
+			deathRow.appendChild( deathCount );
+
+		}
 
 		topbar.appendChild( timer );
 		topbar.appendChild( deathRow );
@@ -156,11 +157,11 @@ in the topbar and bottombar, maybe sidebar.
 		// LIVES
 		// ==========
 		var lives 			= document.createElement( "div" );
-		lives.className 	= 'stat lives';
-		var livesText		= document.createTextNode( 'Lives: ' );
+		lives.className 	= "stat lives";
+		var livesText		= document.createTextNode( "Lives: " );
 		// Might be images in the end. No text. Or both.
 		var livesCount 		= document.createElement( "span" );
-		var livesCountTxt	= document.createTextNode( '3' );
+		var livesCountTxt	= document.createTextNode( "3" );
 		livesCount.appendChild( livesCountTxt );
 
 		lives.appendChild( livesText );
@@ -170,16 +171,16 @@ in the topbar and bottombar, maybe sidebar.
 		// BULLET THINGS
 		// ==============
 		var bulletStats 	= document.createElement( "div" );
-		bulletStats.className = 'bullet-stats';
+		bulletStats.className = "bullet-stats";
 
 		// - Shots -
 		var shots 			= document.createElement( "div" );
-		shots.className 	= 'stat shots';
-		var shotsText		= document.createTextNode( 'Shots: ' );
+		shots.className 	= "stat shots";
+		var shotsText		= document.createTextNode( "Shots: " );
 
 		var shotsCount 		= document.createElement( "span" );
 		// TODO: Make contingency for >999 (DEATH/DESTROYER)
-		var shotsCountTxt	= document.createTextNode( '000' );  // add 0's onto beginning
+		var shotsCountTxt	= document.createTextNode( "000" );  // add 0's onto beginning
 		shotsCount.appendChild( shotsCountTxt );
 
 		shots.appendChild( shotsText );
@@ -187,11 +188,11 @@ in the topbar and bottombar, maybe sidebar.
 
 		// - Hits -
 		var hits 			= document.createElement( "div" );
-		hits.className 		= 'stat hits';
-		var hitsText		= document.createTextNode( 'Hits: ' );
+		hits.className 		= "stat hits";
+		var hitsText		= document.createTextNode( "Hits: " );
 
 		var hitsCount 		= document.createElement( "span" );
-		var hitsCountTxt	= document.createTextNode( '00' );  // add 0's onto beginning
+		var hitsCountTxt	= document.createTextNode( "00" );  // add 0's onto beginning
 		hitsCount.appendChild( hitsCountTxt );
 
 		hits.appendChild( hitsText );
@@ -235,6 +236,37 @@ in the topbar and bottombar, maybe sidebar.
 
 		return self;
 	};  // end Stats.buildHTML()
+
+
+	// =================
+	// RUNTIME FUNCITONS
+	// =================
+	stats.updateStat = function ( stat, value )  {
+	/* ->
+
+	*/
+		var self = this;
+
+		if ( stat === "lives" ) {
+			// update lives images too
+			self[ "lives" ].nodeValue = value;
+
+		} else if ( stat === "elapsedTime" ) {
+			var newTime = Util.msToMMSS( value );
+			self[ "elapsedTime" ].nodeValue = newTime;
+
+		} 
+
+		// else if ( stat === "travelDist" ) {}
+
+		else {
+			self[ stat ].nodeValue = value;
+
+		}
+
+		return self;
+
+	};  // end StatsDisplay.updateStat()
 
 
 	// =================

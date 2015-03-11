@@ -93,7 +93,7 @@ Its properties are accessible to everyone.
 	// 		rect1.left 		> rect2.right 	|| 
 	// 		rect1.bottom 	< rect2.top 	|| 
 	// 		rect1.top 		> rect2.bottom
-	//     );
+	// 	);
 
 	// 	return isOverlapping;
 	// };  // End Util.doesOverlap()
@@ -148,16 +148,15 @@ Returns which edge, left, right, or none, of outerElem will be overtaken
 given the current x speed (given in pixels) of the innerElem
 
 ??: Allow speed to be passed in as str with units, then behave accordingly?
+??: Should this test be written by the student?
 */
 	var edgeHit = "none";
-
-	var bufferX 	= xSpeed;
 
 	var innerRect 	= innerElem.getBoundingClientRect();
 	var outerRect 	= outerElem.getBoundingClientRect();
 
-	var futureLeft 	= innerRect.left 	+ bufferX,
-		futureRight = innerRect.right 	+ bufferX
+	var futureLeft 	= innerRect.left 	+ xSpeed,
+		futureRight = innerRect.right 	+ xSpeed
 	;  // end vars
 
 	// Wish I had a visualization for this logic (past me: what did you mean?)
@@ -176,16 +175,15 @@ Returns which edge, top, bottom, or none, of outerElem will be overtaken
 given the current y speed (given in pixels) of the innerElem
 
 ??: Allow speed to be passed in as str with units, then behave accordingly?
+??: Should this test be written by the student?
 */
 	var edgeHit = "none";
-
-	var bufferY 	= ySpeed;
 
 	var innerRect 	= innerElem.getBoundingClientRect();
 	var outerRect 	= outerElem.getBoundingClientRect();
 
-	var futureTop 		= innerRect.top 	+ bufferY,
-		futureBottom 	= innerRect.bottom 	+ bufferY
+	var futureTop 		= innerRect.top 	+ ySpeed,
+		futureBottom 	= innerRect.bottom 	+ ySpeed
 	;  // end vars
 
 	// Wish I had a visualization for this logic (past me: what did you mean?)
