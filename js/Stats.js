@@ -2,7 +2,7 @@
 
 'use strict'
 
-var Stats = function ( id, containerHTML, mobTypes ) {
+var Stats = function ( idNum, containerHTML, mobTypes ) {
 /* ( int, DOM obj, {} ) -> ( Stats )
 
 Creates html elements to hold the statistics of the game
@@ -15,6 +15,7 @@ in the topbar and bottombar, maybe sidebar.
 	// SETUP
 	// =================
 	stats.container 	= containerHTML;
+	stats.id 			= "Stats_" + idNum;
 
 	stats.topbar		= null;
 	stats.bottombar		= null;

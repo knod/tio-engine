@@ -15,7 +15,9 @@ multiple boards
 	// =================
 	// Many values might be fetched for comparison with other boards
 	board.html 			= null; // needed?
-	board.idNum			= idNum;
+	// The id's are mostly for testing right now
+	// Helps me see which object is having a problem
+	board.id			= "Board_" + idNum;
 
 		// board.gameOver 		= false;
 		// board.paused 		= false;
@@ -61,7 +63,7 @@ multiple boards
 
 		var html 		= document.createElement( "div" );
 		html.className 	= "board";
-		html.id 		= "board_" + board.idNum;
+		html.id 		= board.id;
 
 		return html;
 	};  // End buildHTML()

@@ -15,11 +15,11 @@ multiple players
 	// SETUP VARIABLES
 	// =================
 	// Properties are so that they can be adjusted from the outside
-	player.objType			= "player";
-	player.id 				= "player_" + idNum;
+	player.html 			= null;
+	player.objType			= "Player";
+	player.id 				= player.objType + "_" + idNum;
 	// Purposefully, the field object is not made accessible to its child
 	player.bounderHTML		= fieldHTML;
-	player.html 			= null;
 
 	player.width 			= fieldHTML.clientWidth / 20;
 

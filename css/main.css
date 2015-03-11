@@ -178,27 +178,15 @@ Really limits felxibility for mob types of things */
 	z-index: 0;
 }
 
-.player {
-	position: absolute;
-	bottom: 0;
-}
+.player, .mob, .bullet, .barrier { position: absolute; }
 
-.row {
-	position: absolute;
-	left: 0;
-}
+.player { bottom: 0; }
 
-.mob {
-	position: absolute;
-	top: 0;
-}
+.mob { top: 0; }
 
-.bullet {
-	z-index: -100;
-}
+.bullet { z-index: -100; }
 
 .barrier {
-	position: absolute;
 	/* Not quite function since they don't move */
 	bottom: 5%;
 }

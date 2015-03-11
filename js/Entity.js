@@ -18,7 +18,7 @@ constructs?
 	// Library of enemies that could cause death and the images to
 	// go with death by that emeny
 	entity.deathAnimations 		= {
-		"bullet": entity.bulletDeathImages
+		"Bullet": entity.bulletDeathImages
 	};
 
 	entity.moveX = function ( xSpeed ) {

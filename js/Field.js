@@ -15,13 +15,13 @@ Field object, handling its rows, bullets, and player(s)
 
 	field.html 			= null;
 	field.boardHTML 	= boardHTML;
-	field.idNum 		= idNum;
+	field.id	 		= "Field_" + idNum;
 
 	field.rowMap 		= ["1", "2", "2", "3", "3"];
 	field.rows 			= null;
 	field.player 		= null;
-		// // Bullets will have a shooter type to guide collision responses
-		// field.bullets 		= [];
+	// Bullets will have a shooter type to guide collision responses
+	field.bullets 		= [];
 
 		// // ??: Should this be in the board for easier stats stuff?
 		// // Or in rows to get closer to mobs?
@@ -37,7 +37,7 @@ Field object, handling its rows, bullets, and player(s)
 	*/
 		var html 		= document.createElement( "div" );
 		html.className 	= "field";
-		html.id 		= "field_" + self.idNum;
+		html.id 		= field.id;
 
 		return html;
 	};  // End buildHTML()

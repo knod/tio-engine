@@ -21,7 +21,7 @@ Everything is in pixels.
 	// SETUP
 	// =================
 	rows.bounderHTML 	= fieldHTML;
-	rows.idNum 			= idNum;
+	rows.id 			= "Rows_" + idNum;
 	rows.mobs 			= [];
 
 	var rowMap 			= ["1", "2", "2", "3", "3"];

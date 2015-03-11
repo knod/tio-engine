@@ -2,26 +2,36 @@
 
 'use strict'
 
-var Bullet = function ( id, shooterType, fieldHTML ) {
+var Bullet = function ( idNum, shooterType, shooterHTML, fieldHTML ) {
 /*
 
 Bullets object, controlling behavior of bullets
+
+WARNING: The Bullet and the shooter have to be DOM siblings
 */
 	var bullet = new Entity();
 
 	// Properties are so that they can be adjusted from the outside
-	bullet.objType		= "bullet";
-	bullet.shooterType	= shooterType;
-	bullet.id 			= "bullet_" + id;
+	bullet.html 		= null;
+	bullet.objType		= "Bullet";
+	// Make sure it's unique, since there's no global bullet count (each
+	// shooter object has its own count). For a Mob, Rows should handle that
+	bullet.id 			= bullet.objType + "_" + shooterType + "_" + idNum;
 	bullet.bounderHTML	= fieldHTML;
 
-	bullet.html 		= null;
-
-	// bullet.speedX 		= 0;  // to be based on width and game field width?
-	bullet.speedY		= 0;
+	bullet.shooterType	= shooterType;
+	var shooterHTML 	= shooterHTML;  // Just want to remind us this is here
 
 	// Variables are things that won't ever be changed or searched for outside of this Bullet
-	
+	// Needed for placement in the field
+	var bulletWidth 	= 4,
+		bulletHeight 	= 7;
+
+	var speed 			= { x: 0, y: 0 };
+	// 1% of field height, since starting height can be different
+	var vertSpeed 		= fieldHTML * 0.1;
+	var maxSpeed 		= { x: 0, y: vertSpeed }; // to be based on width and game field width?
+
 
 	var buildHTML = function () {
 	/*
@@ -29,25 +39,52 @@ Bullets object, controlling behavior of bullets
 	Does not append the object
 	*/
 		var html = document.createElement( "div" );
+		html.className 		= 'object bullet';
+		html.id 			= bullet.id;
+
+		html.style.width 	= bulletWidth + "px";
+		html.style.height 	= bulletHeight + "px";
 
 		return html;
 	};  // End buildHTML()
 
 
-	var addToDOM = function ( elem ) {
-	/*
+	var addToDOM = function ( bulletElem ) {
+	/* 
+
+	WARNING: The Bullet and the shooter have to be DOM siblings
+	// TODO: Using shooterType, place top or bottom in the right position
 
 	??: A function for the student to build?
 	*/
 
+		// Use the shooterHTML to get the coords for the bullet elem
+		var shooterWidth 		= shooterHTML.offsetWidth,
+			shooterLeft 		= shooterHTML.offsetLeft,
+			shooterHorCenter 	= shooterLeft + ( shooterWidth / 2 )
+		;
+		// bulletWidth from Bullet's scope
+		var bulletLeft 			= shooterHorCenter - ( bulletWidth / 2 );
+
+		// Base the vertical placement on the type of shooter. For funzies.
+		var bulletTop = null;
+		if ( shooterType === "Player" ) {
+			// Start the bullet above the player
+			bulletTop = ( shooterHTML.offsetTop - bulletHeight );
+
+		} else if ( shooterType === "Mob" ) {
+			// Start the bullet below the mob
+			bulletTop = shooterHTML.offsetTop + shooterHTML.offsetHeight;
+
+		}
+
 		// Bullet should maybe start at middle of its shooter
-		var bulletCentered 	= 5;  // Yeah, needs calculation
-		elem.style.left 	= bulletCentered + "px";
-		var bulletY 		= 5;  // Top of shooter + own height
-		elem.style.bottom 	= bulletY + "px";
+		bulletElem.style.left 	= bulletLeft + "px";
+		bulletElem.style.top 	= bulletTop + "px";
 
-		bullet.bounderHTML.appendChild( elem );
+		bullet.bounderHTML.appendChild( bulletElem );
 
+		return bulletElem;
 	};  // End addtoDOM()
 
 
@@ -75,13 +112,11 @@ Bullets object, controlling behavior of bullets
 		// };  // End Bullet.collideWith()
 
 
-		// bullet.die = function () {
-		// /*
-
-		// */
-
-
-		// };  // End Bullet.die()
+	// ===============
+	// INITIALIZATION
+	// ===============
+	bullet.html = buildHTML();
+	addToDOM( bullet.html );
 
 	return bullet;
 };  // End Bullet{}

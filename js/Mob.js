@@ -16,10 +16,11 @@ Mobs object, controlling behavior of AI
 	// Variables are things that won't ever be changed or searched for outside of this Mob
 
 	mob.html 		= null;
-	mob.idNum 		= idNum;
-	mob.objType		= "mob";  // bullet needs this so it won't shoot its own mob
-	mob.mobType		= type;
+	mob.objType		= "Mob";  // bullet needs this so it won't shoot its own mob
+	mob.id 			= mob.objType + "_" + idNum;
 	mob.bounderHTML	= fieldHTML;
+
+	mob.mobType		= type;
 
 	// Rows needs rowNum and colNum as properties for movement and for shooting
 	mob.rowNum		= cellPos.y;
@@ -38,8 +39,9 @@ Mobs object, controlling behavior of AI
 		// For placement and color
 		html.className 	= "mob mob" + mob.mobType;
 		// Not sure we need this, but maybe it will help
-		// This might need to be based on idNum, not sure
-		html.id 		= "row_" + mob.rowNum + "col_" + mob.colNum;
+		// ??: Should DOM id be based on mob.id? Or row and col numbers? We
+		// can get row and col info elsewhere
+		html.id 		= mob.id;
 
 		html.style.width 	= mobWidth + "px";
 		html.style.height 	= mobHeight + "px";
