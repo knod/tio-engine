@@ -22,16 +22,11 @@ multiple boards
 
 	board.field 		= null;
 	board.stats 		= null;
-	// Not sure if we're going to use points at all
 	// This should be in here because Stats needs it too
-	board.mobTypes		= {
-		1: "1",
-		2: "2",
-		3: "3",
-		// This is a base value, will be randomized
-		x: "x"
-	};
-	// board.mobTypes		= {
+	board.mobTypes		= [ "x", "1", "2", "3" ];
+
+	// Not sure if we're going to use points at all
+	// board.mobPoints		= {
 	// 	1: { points: 10 },
 	// 	2: { points: 20 },
 	// 	3: { points: 30 },

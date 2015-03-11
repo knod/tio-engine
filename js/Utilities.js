@@ -93,12 +93,13 @@ Its properties are accessible to everyone.
 	// 		rect1.left 		> rect2.right 	|| 
 	// 		rect1.bottom 	< rect2.top 	|| 
 	// 		rect1.top 		> rect2.bottom
-	//     );
+	// 	);
 
 	// 	return isOverlapping;
 	// };  // End Util.doesOverlap()
 
-	// Util.exitsWhichEdgesWithSpeed = function ( innerElem, outerElem, speedVectorsPx ) {
+
+	// Util.whichEdgeAtSpeed = function ( innerElem, outerElem, speedVectorsPx ) {
 	// /* ( DOM, DOM, {} ) -> {}
 
 	// WARNING: Speed values must be given in pixels
@@ -136,7 +137,61 @@ Its properties are accessible to everyone.
 	// 	else if ( futureBottom 	>  outerRect.bottom ) { edgesHit.y = "bottom"; }
 
 	// 	return edgesHit;
-	// };  // End Util.exitsWhichEdgesWithSpeed()
+	// };  // End Util.whichEdgeAtSpeed()
+
+
+Util.whichEdgeAtSpeedX = function ( innerElem, outerElem, xSpeed ) {
+/* ( DOM, DOM, num ) -> str
+
+WARNING: Speed values must be given in pixels
+Returns which edge, left, right, or none, of outerElem will be overtaken
+given the current x speed (given in pixels) of the innerElem
+
+??: Allow speed to be passed in as str with units, then behave accordingly?
+??: Should this test be written by the student?
+*/
+	var edgeHit = "none";
+
+	var innerRect 	= innerElem.getBoundingClientRect();
+	var outerRect 	= outerElem.getBoundingClientRect();
+
+	var futureLeft 	= innerRect.left 	+ xSpeed,
+		futureRight = innerRect.right 	+ xSpeed
+	;  // end vars
+
+	// Wish I had a visualization for this logic (past me: what did you mean?)
+	if 		( futureLeft  < outerRect.left  ) { edgeHit = "left";  }
+	else if ( futureRight > outerRect.right ) { edgeHit = "right"; }
+
+	return edgeHit;
+};  // End Util.whichEdgeAtSpeedX()
+
+
+Util.whichEdgeAtSpeedY = function ( innerElem, outerElem, ySpeed ) {
+/* ( DOM, DOM, num ) -> str
+
+WARNING: Speed values must be given in pixels
+Returns which edge, top, bottom, or none, of outerElem will be overtaken
+given the current y speed (given in pixels) of the innerElem
+
+??: Allow speed to be passed in as str with units, then behave accordingly?
+??: Should this test be written by the student?
+*/
+	var edgeHit = "none";
+
+	var innerRect 	= innerElem.getBoundingClientRect();
+	var outerRect 	= outerElem.getBoundingClientRect();
+
+	var futureTop 		= innerRect.top 	+ ySpeed,
+		futureBottom 	= innerRect.bottom 	+ ySpeed
+	;  // end vars
+
+	// Wish I had a visualization for this logic (past me: what did you mean?)
+	if 		( futureTop  	< outerRect.top  ) 	{ edgeHit = "top";  	}
+	else if ( futureBottom 	> outerRect.bottom ) 	{ edgeHit = "bottom"; 	}
+
+	return edgeHit;
+};  // End Util.whichEdgeAtSpeedY()
 
 
 	// Util.distanceBetweenSides = function ( elem1, side1, elem2, side2 ) {
