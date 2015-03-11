@@ -13,6 +13,9 @@ body {text-align: center;}
 
 .splash-screen {}
 
+header {
+	margin: 0.5rem;
+}
 
 /* ================ */
 /* PAGE SKIN 		*/
@@ -34,6 +37,7 @@ body {
 .board {
 	/*position: relative;*/
 	display: inline-block;
+	margin: 0.5rem;
 	/*width: 35rem;
 	height: 30rem;*/
 	width: 560px;
