@@ -74,8 +74,7 @@ Everything is in pixels.
 	*/
 		var mobs = [];
 
-		// TODO: Change to ( idNum, type, cellDims, cellPos, fieldHTML )
-		// Mob = function ( idNum, type, rowHeight, rowNum, colWidth, colNum, fieldHTML )
+		// TODO: Change to ( idNum, type, cellDimensions, cellPos, mobWidth, fieldHTML )
 		// Mobs will append themselves to the bounderHTML
 		for ( var rowNum = 0; rowNum < rowMap.length; rowNum++ ) {
 
@@ -99,6 +98,62 @@ Everything is in pixels.
 	// =================
 	// RUNTIME FUNCITONS
 	// =================
+	rows.setXSpeed = function ( horDirection ) {
+	/* ( str ) -> num
+
+	Sets the horizontal speed based on the direction given.
+	Returns the speed.
+	"direction" should only be "right", "left", or "none"
+	*/
+		var self = this;
+
+		// If moving in none of the tested directions,
+		// speed will be 0
+		var newXSpeed = 0;
+
+		// Figure out the horizontal spped
+		if ( horDirection === "right" ) {
+			newXSpeed = maxSpeed.x;
+		} else if ( horDirection === "left" )  {
+			newXSpeed = -1 * maxSpeed.x
+		}
+
+		// This is this object's variable, though not a property
+		// Set the horizontal speed of all the mobs
+		speed.x = newXSpeed;
+
+		return speed.x;
+	};  // End Rows.setXSpeed()
+
+
+	rows.setYSpeed = function ( vertDirection ) {
+	/* ( str ) -> num
+
+	Sets the horizontal speed based on the direction given.
+	Returns the speed.
+	"direction" should only be "down", "up", or "none"
+	*/
+		var self = this;
+
+		// If moving in none of the tested directions,
+		// speed will be 0
+		var newYSpeed = 0;
+
+		// Figure out the vertical speed
+		if ( vertDirection === "down" ) {
+			newYSpeed = maxSpeed.y;
+		} else if ( vertDirection === "up" )  {
+			newYSpeed = -1 * maxSpeed.y
+		}
+
+		// This is this object's variable, though not a property
+		// Set the horizontal speed of all the mobs
+		speed.y = newYSpeed;
+
+		return speed.y;
+	};  // End Rows.setYSpeed()
+
+
 	rows.moveOneRowX = function ( rowNum ) {
 	/* ( int ) -> Rows
 
@@ -116,7 +171,7 @@ Everything is in pixels.
 			// If the mob is in the right row, move it
 			if ( mob_.rowNum === rowNum ) {
 
-				mob_.moveX( maxSpeed.x );
+				mob_.moveX( speed.x );
 
 			}
 		}  // end for ( mob )
@@ -156,7 +211,7 @@ Everything is in pixels.
 			// If the mob is in the right row, move it
 			if ( mob_.rowNum === rowNum ) {
 
-				mob_.moveY( maxSpeed.y );
+				mob_.moveY( speed.y );
 
 			}
 		}  // end for ( mob )
@@ -257,6 +312,9 @@ Everything is in pixels.
 	// INITIALIZATION
 	// =================
 	rows.mobs = buildMobs( rowHeight, colWidth, fieldHTML );
+	rows.setXSpeed( "right" );
+	rows.setYSpeed( "down" );
+
 
 	// ===========
 	// END
