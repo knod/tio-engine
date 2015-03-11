@@ -1,4 +1,11 @@
-/* Created 03/01/15 */
+/* Created 03/01/15 
+
+Resources:
+- Arranging Mob's in rows
+	Wrong way: http://jsfiddle.net/3sox1v3h/
+	Right way: http://jsfiddle.net/3sox1v3h/1/
+	Illustration for emphasis: http://i.imgur.com/j00VTJh.png
+*/
 
 'use strict'
 
@@ -21,9 +28,9 @@ Everything is in pixels.
 	// Measurement values given in percents and should match CSS
 	// ??: Should I have pixel value too, to place each mob?
 	// Calculations needed for initial placement of mobs
-	var moveXDist 		= 5;
+	var speed 			= { x: 0, y: 0 };
+	var maxSpeed 		= { x: 5, y: 15 };
 	var xNumSteps 		= 16;
-	var moveYDist 		= 15;
 
 	var numRows 		= numRows;
 	// 32 for height 400px
@@ -31,8 +38,14 @@ Everything is in pixels.
 
 	// Needed for colWidth calculation. Each step is 5px right now.
 	var numCols			= numCols;
-	var rowWidth		= fieldHTML.clientWidth - (xNumSteps * moveXDist);
-	var colWidth 		= rowWidth / numCols;
+	var rowWidth		= fieldHTML.clientWidth - (xNumSteps * maxSpeed.x);
+	// Not possible to correctly calculate the cell width without the mob
+	// width since you need to subtract the last mob width from the
+	// calculation. See Resources at the top for examples
+	var mobWidth 		= 20;
+	var colWidth 		= (rowWidth - mobWidth) / (numCols - 1);
+
+	var cellDimensions 	= { width: colWidth, height: rowHeight };
 
 		// How to handle movement and speed?
 		// rows.speedX 		= 0;
@@ -61,7 +74,7 @@ Everything is in pixels.
 	*/
 		var mobs = [];
 
-		// Mob = function ( idNum, type, rowHeight, rowNum, colWidth, colNum, fieldHTML )
+		// TODO: Change to ( idNum, type, cellDimensions, cellPos, mobWidth, fieldHTML )
 		// Mobs will append themselves to the bounderHTML
 		for ( var rowNum = 0; rowNum < rowMap.length; rowNum++ ) {
 
@@ -71,9 +84,8 @@ Everything is in pixels.
 
 				// Each Mob adds itself to the DOM on its creation
 				var mob = new Mob( idNum, rowMap[rowNum],
-					rowHeight, rowNum,
-					colWidth, colNum,
-					rows.bounderHTML );
+					cellDimensions, { x: colNum, y: rowNum },
+					mobWidth, rows.bounderHTML );
 
 				mobs.push( mob );
 			}
@@ -86,45 +98,162 @@ Everything is in pixels.
 	// =================
 	// RUNTIME FUNCITONS
 	// =================
-		// var moveX = function () {
-		// /*
+	rows.needToChangeDirection = function () {
+	/*
 
-		// Staggered horizontal movement for mobs, by row
-		// */
-
-
-		// };  // End moveX()
+	Return whether or not the rows need to change direction.
+	??: Should this be here as a suggestion for the student?
+	*/
 
 
-		// var moveY = function () {
-		// /*
-
-		// Staggered vertical movement for mobs, by row
-		// */
+	};  // End Rows.needToChangeDirection()
 
 
-		// };  // End moveY()
+	rows.changeDirection = function () {
+	/*
+
+	Move down and set horizontal speed to the opposite direction.
+	??: Should this be here as a suggestion for the student?
+	*/
 
 
-		// var needToChangeDirection = function () {
-		// /*
-
-		// Check if direction of movement needs to be changed
-		// */
+	};  // End Rows.changeDirection()
 
 
-		// };  // End needToChangeDirection()
+	rows.setXSpeed = function ( horDirection ) {
+	/* ( str ) -> num
+
+	Sets the horizontal speed based on the direction given.
+	Returns the speed.
+	"direction" should only be "right", "left", or "none"
+	*/
+		var self = this;
+
+		// If moving in none of the tested directions,
+		// speed will be 0
+		var newXSpeed = 0;
+
+		// Figure out the horizontal spped
+		if ( horDirection === "right" ) {
+			newXSpeed = maxSpeed.x;
+		} else if ( horDirection === "left" )  {
+			newXSpeed = -1 * maxSpeed.x
+		}
+
+		// This is this object's variable, though not a property
+		// Set the horizontal speed of all the mobs
+		speed.x = newXSpeed;
+
+		return speed.x;
+	};  // End Rows.setXSpeed()
 
 
-		// var changeDirection = function () {
-		// /*
+	rows.setYSpeed = function ( vertDirection ) {
+	/* ( str ) -> num
 
-		// Move down and set speed to the opposite
-		// horizontal direction
-		// */
+	Sets the horizontal speed based on the direction given.
+	Returns the speed.
+	"direction" should only be "down", "up", or "none"
+	*/
+		var self = this;
+
+		// If moving in none of the tested directions,
+		// speed will be 0
+		var newYSpeed = 0;
+
+		// Figure out the vertical speed
+		if ( vertDirection === "down" ) {
+			newYSpeed = maxSpeed.y;
+		} else if ( vertDirection === "up" )  {
+			newYSpeed = -1 * maxSpeed.y
+		}
+
+		// This is this object's variable, though not a property
+		// Set the horizontal speed of all the mobs
+		speed.y = newYSpeed;
+
+		return speed.y;
+	};  // End Rows.setYSpeed()
 
 
-		// };  // End changeDirection()
+	rows.moveOneRowX = function ( rowNum ) {
+	/* ( int ) -> Rows
+
+	Move one row horizontally. This is so the movement of the
+	rows can be staggered like the olde tyme legit game.
+
+	Returns Rows.
+	*/
+		var self 	= this;
+		var mobs_ 	= self.mobs
+
+		for ( var mobi = 0; mobi < mobs_.length; mobi++ ) {
+
+			var mob_ = mobs_[ mobi ];
+			// If the mob is in the right row, move it
+			if ( mob_.rowNum === rowNum ) {
+
+				mob_.moveX( speed.x );
+
+			}
+		}  // end for ( mob )
+
+		return self;
+
+	};  // End moveOneRowX()
+
+
+	rows.moveRowsX = function ( rowNum ) {
+	/* ( int ) -> 
+
+	Staggered horizontal movement for mobs, by row.
+	Or not staggered. Whatever you want really.
+
+	rowNum should start at 0
+	*/
+
+
+	};  // End moveRowsX()
+
+
+	rows.moveOneRowY = function ( rowNum ) {
+	/* ( int ) -> Rows
+
+	Move one row horizontally. This is so the movement of the
+	rows can be staggered like the olde tyme legit game.
+
+	Returns Rows.
+	*/
+		var self 	= this;
+		var mobs_ 	= self.mobs
+
+		for ( var mobi = 0; mobi < mobs_.length; mobi++ ) {
+
+			var mob_ = mobs_[ mobi ];
+			// If the mob is in the right row, move it
+			if ( mob_.rowNum === rowNum ) {
+
+				mob_.moveY( speed.y );
+
+			}
+		}  // end for ( mob )
+
+		return self;
+
+	};  // End moveOneRowY()
+
+
+	rows.moveRowsY = function ( rowNum ) {
+	/* ( int ) -> 
+
+	Staggered vertical movement for mobs, by row.
+	Or whatever.
+
+	rowNum should start at 0
+	*/
+
+
+	};  // End moveRowsY()
 
 
 		// var getRandomLowest = function () {
@@ -165,8 +294,7 @@ Everything is in pixels.
 		// */
 
 		// 	// Kill all mobs that have been marked as dead
-		// 	// After an appropriate pause, trigger horizontal movement
-		// 	// After an appropriate pause, trigger vertical movement
+		// 	// After an appropriate pause, trigger movement stuff
 
 		// };
 
@@ -174,6 +302,11 @@ Everything is in pixels.
 	// INITIALIZATION
 	// =================
 	rows.mobs = buildMobs( rowHeight, colWidth, fieldHTML );
+
+	// ??: Student should add these in?
+	rows.setXSpeed( "right" );
+	rows.setYSpeed( "down" );
+
 
 	// ===========
 	// END
