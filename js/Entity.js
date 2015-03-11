@@ -12,6 +12,14 @@ constructs?
 */
 	var entity = this;
 
+	// File names of images with which to animate death (by bullet here)
+	// Should be added to at coder's own discretion
+	entity.bulletDeathImages 	= [];
+	// Library of enemies that could cause death and the images to
+	// go with death by that emeny
+	entity.deathAnimations 		= {
+		"bullet": entity.bulletDeathImages
+	};
 
 	entity.moveX = function ( xSpeed ) {
 	/* ( num ) -> str
@@ -87,6 +95,59 @@ constructs?
 		return edgeHit;
 	};  // End Entity.moveY()
 
+
+	entity.deathAnimation = function ( imagesList, frameNum ) {
+	/* ( int ) -> Entity
+	
+	Increase frame by 1 each time and call this recursively
+	until the death animation is complete.
+
+	Of course, right now it just removes the html. You
+	have to put in custom death images in each type of entity.
+	*/
+		var self = this,
+			selfHTML_ = self.html;
+
+		// If there's an item at the index number frameNum
+		if ( imagesList[ frameNum ] ) {
+
+			selfHTML_.style[ "background-image" ] = 
+				"url(" + imagesList[ frameNum ] + ")";
+
+			var newFrame = frameNum + 1;
+			self.deathAnimation( imagesList, newFrame );
+
+		} else {
+
+			selfHTML_.parentNode.removeChild(selfHTML_);
+
+		}
+
+		return self;
+	};  // end Entity.deathAnimation()
+
+
+	entity.die = function ( killer ) {
+	/* ( str ) -> Entity
+	
+	Basically, just set dead to true and trigger death
+	animation.
+	??: should deathAnimation only be called when self.dead
+	gets used?
+
+	// TODO: Add ways to have different kinds of death animations
+	*/
+		var self = this;
+
+		// Trigger death animation
+		self.deathAnimation( self.deathAnimations[ killer ], 0 );
+
+		// Tell whoever cares that this object needs
+		// to be removed from its list at the right time
+		self.dead = true;
+
+		return self;
+	};  // end Entity.die()
 
 
 	return entity;
