@@ -8,6 +8,7 @@ var Entity = function () {
 Entity object from which other entities are created
 ??: Maybe out of bounds collisions should be a check the student
 constructs?
+??: Should move reset speed to 0 each time?
 */
 	var entity = this;
 
@@ -36,7 +37,7 @@ constructs?
 
 		// If the edge we're heading towards is hit, don't move, print a message
 		if ( edgeHit === towardsWhichEdge ) {
-			console.log( "Object of type" + self.objType + " has hit the " + towardsWhichEdge + " edge of: ", self.bounderHTML );
+			console.log( "Object of type " + self.objType + " has hit the " + towardsWhichEdge + " edge of: ", self.bounderHTML );
 
 		} else {
 			// Move the correct amount in the correct direction
@@ -73,7 +74,7 @@ constructs?
 
 		// If the edge we're heading towards is hit, don't move, print a message
 		if ( edgeHit === towardsWhichEdge ) {
-			console.log( "Object of type" + self.objType + " has hit the " + towardsWhichEdge + " edge of: ", self.bounderHTML );
+			console.log( "Object of type " + self.objType + " has hit the " + towardsWhichEdge + " edge of: ", self.bounderHTML );
 
 		} else {
 			// Move the correct amount in the correct direction

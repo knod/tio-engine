@@ -2,7 +2,7 @@
 
 'use strict'
 
-var Mob = function ( idNum, type, rowHeight, rowNum, colWidth, colNum, fieldHTML ) {
+var Mob = function ( idNum, type, cellDimensions, cellPos, mobWidth, fieldHTML ) {
 /*
 
 Mobs object, controlling behavior of AI
@@ -17,25 +17,17 @@ Mobs object, controlling behavior of AI
 
 	mob.html 		= null;
 	mob.idNum 		= idNum;
-	mob.objType		= "mob";
+	mob.objType		= "mob";  // bullet needs this so it won't shoot its own mob
 	mob.mobType		= type;
 	mob.bounderHTML	= fieldHTML;
 
-	// Doesn't really need rowHeight property, but I don't want it to
-	// get mentally lost in the noise. Determines style.top
-	var rowHeight 	= rowHeight;
-	mob.rowNum		= rowNum;
-	// Same
-	var colWidth 	= colWidth;
-	mob.colNum 		= colNum;
-	var mobWidth 	= colWidth/2.2;  // just a guess
-	var mobHeight 	= rowHeight/2;  // just a guess
+	// Rows needs rowNum and colNum as properties for movement and for shooting
+	mob.rowNum		= cellPos.y;
+	mob.colNum 		= cellPos.x;
 
-	// Both handled in by Rows parent object?
-	mob.speedX 		= 0;  // to be based on width and game field width?
-	mob.speedY		= 0;
+	var mobWidth 	= mobWidth;  // just a guess
+	var mobHeight 	= cellDimensions.height / 2;  // just a guess
 
-	
 
 	var buildHTML = function () {
 	/*
@@ -62,10 +54,10 @@ Mobs object, controlling behavior of AI
 	??: A function for the student to build?
 	*/
 
-		var topPos 		= rowHeight * mob.rowNum;
-		elem.style.top 	= topPos + "px";
-		var leftPos 	= colWidth * mob.colNum;
+		var leftPos 	= cellDimensions.width * mob.colNum;
 		elem.style.left = leftPos + "px";
+		var topPos 		= cellDimensions.height * mob.rowNum;
+		elem.style.top 	= topPos + "px";
 
 		mob.bounderHTML.appendChild( elem );
 

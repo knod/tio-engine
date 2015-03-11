@@ -1,4 +1,11 @@
-/* Created 03/01/15 */
+/* Created 03/01/15 
+
+Resources:
+- Arranging Mob's in rows
+	Wrong way: http://jsfiddle.net/3sox1v3h/
+	Right way: http://jsfiddle.net/3sox1v3h/1/
+	Illustration for emphasis: http://i.imgur.com/j00VTJh.png
+*/
 
 'use strict'
 
@@ -21,9 +28,9 @@ Everything is in pixels.
 	// Measurement values given in percents and should match CSS
 	// ??: Should I have pixel value too, to place each mob?
 	// Calculations needed for initial placement of mobs
-	var moveXDist 		= 5;
+	var speed 			= { x: 0, y: 0 };
+	var maxSpeed 		= { x: 5, y: 15 };
 	var xNumSteps 		= 16;
-	var moveYDist 		= 15;
 
 	var numRows 		= numRows;
 	// 32 for height 400px
@@ -31,8 +38,14 @@ Everything is in pixels.
 
 	// Needed for colWidth calculation. Each step is 5px right now.
 	var numCols			= numCols;
-	var rowWidth		= fieldHTML.clientWidth - (xNumSteps * moveXDist);
-	var colWidth 		= rowWidth / numCols;
+	var rowWidth		= fieldHTML.clientWidth - (xNumSteps * maxSpeed.x);
+	// Not possible to correctly calculate the cell width without the mob
+	// width since you need to subtract the last mob width from the
+	// calculation. See Resources at the top for examples
+	var mobWidth 		= 20;
+	var colWidth 		= (rowWidth - mobWidth) / (numCols - 1);
+
+	var cellDimensions 	= { width: colWidth, height: rowHeight };
 
 		// How to handle movement and speed?
 		// rows.speedX 		= 0;
@@ -61,6 +74,7 @@ Everything is in pixels.
 	*/
 		var mobs = [];
 
+		// TODO: Change to ( idNum, type, cellDims, cellPos, fieldHTML )
 		// Mob = function ( idNum, type, rowHeight, rowNum, colWidth, colNum, fieldHTML )
 		// Mobs will append themselves to the bounderHTML
 		for ( var rowNum = 0; rowNum < rowMap.length; rowNum++ ) {
@@ -71,9 +85,8 @@ Everything is in pixels.
 
 				// Each Mob adds itself to the DOM on its creation
 				var mob = new Mob( idNum, rowMap[rowNum],
-					rowHeight, rowNum,
-					colWidth, colNum,
-					rows.bounderHTML );
+					cellDimensions, { x: colNum, y: rowNum },
+					mobWidth, rows.bounderHTML );
 
 				mobs.push( mob );
 			}
@@ -86,14 +99,84 @@ Everything is in pixels.
 	// =================
 	// RUNTIME FUNCITONS
 	// =================
-		// var moveX = function () {
-		// /*
+	rows.moveOneRowX = function ( rowNum ) {
+	/* ( int ) -> Rows
 
-		// Staggered horizontal movement for mobs, by row
-		// */
+	Move one row horizontally. This is so the movement of the
+	rows can be staggered like the olde tyme legit game.
+
+	Returns Rows.
+	*/
+		var self 	= this;
+		var mobs_ 	= self.mobs
+
+		for ( var mobi = 0; mobi < mobs_.length; mobi++ ) {
+
+			var mob_ = mobs_[ mobi ];
+			// If the mob is in the right row, move it
+			if ( mob_.rowNum === rowNum ) {
+
+				mob_.moveX( maxSpeed.x );
+
+			}
+		}  // end for ( mob )
+
+		return self;
+
+	};  // End moveOneRowX()
 
 
-		// };  // End moveX()
+	rows.moveRowsX = function ( rowNum ) {
+	/* ( int ) -> 
+
+	Staggered horizontal movement for mobs, by row.
+	Or not staggered. Whatever you want really.
+
+	rowNum should start at 0
+	*/
+
+
+	};  // End moveRowsX()
+
+
+	rows.moveOneRowY = function ( rowNum ) {
+	/* ( int ) -> Rows
+
+	Move one row horizontally. This is so the movement of the
+	rows can be staggered like the olde tyme legit game.
+
+	Returns Rows.
+	*/
+		var self 	= this;
+		var mobs_ 	= self.mobs
+
+		for ( var mobi = 0; mobi < mobs_.length; mobi++ ) {
+
+			var mob_ = mobs_[ mobi ];
+			// If the mob is in the right row, move it
+			if ( mob_.rowNum === rowNum ) {
+
+				mob_.moveY( maxSpeed.y );
+
+			}
+		}  // end for ( mob )
+
+		return self;
+
+	};  // End moveOneRowY()
+
+
+	rows.moveRowsY = function ( rowNum ) {
+	/* ( int ) -> 
+
+	Staggered vertical movement for mobs, by row.
+	Or whatever.
+
+	rowNum should start at 0
+	*/
+
+
+	};  // End moveRowsY()
 
 
 		// var moveY = function () {
