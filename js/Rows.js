@@ -98,6 +98,28 @@ Everything is in pixels.
 	// =================
 	// RUNTIME FUNCITONS
 	// =================
+	rows.needToChangeDirection = function () {
+	/*
+
+	Return whether or not the rows need to change direction.
+	??: Should this be here as a suggestion for the student?
+	*/
+
+
+	};  // End Rows.needToChangeDirection()
+
+
+	rows.changeDirection = function () {
+	/*
+
+	Move down and set horizontal speed to the opposite direction.
+	??: Should this be here as a suggestion for the student?
+	*/
+
+
+	};  // End Rows.changeDirection()
+
+
 	rows.setXSpeed = function ( horDirection ) {
 	/* ( str ) -> num
 
@@ -234,37 +256,6 @@ Everything is in pixels.
 	};  // End moveRowsY()
 
 
-		// var moveY = function () {
-		// /*
-
-		// Staggered vertical movement for mobs, by row
-		// */
-
-
-		// };  // End moveY()
-
-
-		// var needToChangeDirection = function () {
-		// /*
-
-		// Check if direction of movement needs to be changed
-		// */
-
-
-		// };  // End needToChangeDirection()
-
-
-		// var changeDirection = function () {
-		// /*
-
-		// Move down and set speed to the opposite
-		// horizontal direction
-		// */
-
-
-		// };  // End changeDirection()
-
-
 		// var getRandomLowest = function () {
 		// /*
 
@@ -303,8 +294,7 @@ Everything is in pixels.
 		// */
 
 		// 	// Kill all mobs that have been marked as dead
-		// 	// After an appropriate pause, trigger horizontal movement
-		// 	// After an appropriate pause, trigger vertical movement
+		// 	// After an appropriate pause, trigger movement stuff
 
 		// };
 
@@ -312,6 +302,8 @@ Everything is in pixels.
 	// INITIALIZATION
 	// =================
 	rows.mobs = buildMobs( rowHeight, colWidth, fieldHTML );
+
+	// ??: Student should add these in?
 	rows.setXSpeed( "right" );
 	rows.setYSpeed( "down" );
 
