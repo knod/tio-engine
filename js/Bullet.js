@@ -16,7 +16,7 @@ WARNING: The Bullet and the shooter have to be DOM siblings
 	bullet.objType		= "Bullet";
 	// Make sure it's unique, since there's no global bullet count (each
 	// shooter object has its own count). For a Mob, Rows should handle that
-	bullet.id 			= bullet.objType + "_" + shooterType + "_" + idNum;
+	bullet.id 			= bullet.objType + "_" + idNum + "_" + shooterHTML.id;
 	bullet.bounderHTML	= fieldHTML;
 
 	bullet.shooterType	= shooterType;

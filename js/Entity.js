@@ -14,12 +14,15 @@ constructs?
 
 	// File names of images with which to animate death (by bullet here)
 	// Should be added to at coder's own discretion
-	entity.bulletDeathImages 	= [];
+	entity.bulletDeathImages;
 	// Library of enemies that could cause death and the images to
 	// go with death by that emeny
-	entity.deathAnimations 		= {
-		"Bullet": entity.bulletDeathImages
-	};
+	entity.deathAnimations;
+
+	// Bullets don't have their own bullets, and shooting from a bullet
+	// will cause an error, but the other things have bullets, so...
+	entity.bulletIDNum;
+
 
 	entity.moveX = function ( xSpeed ) {
 	/* ( num ) -> str
@@ -96,6 +99,15 @@ constructs?
 	};  // End Entity.moveY()
 
 
+	// File names of images with which to animate death (by bullet here)
+	// Should be added to at coder's own discretion
+	entity.bulletDeathImages 	= [];
+	// Library of enemies that could cause death and the images to
+	// go with death by that emeny
+	entity.deathAnimations 		= {
+		"Bullet": entity.bulletDeathImages
+	};
+
 	entity.deathAnimation = function ( imagesList, frameNum ) {
 	/* ( int ) -> Entity
 	
@@ -148,6 +160,31 @@ constructs?
 
 		return self;
 	};  // end Entity.die()
+
+
+	entity.bulletIDNum = 0;
+
+	entity.shoot = function () {
+	/* ( none ) -> Bullet
+
+	Creates a bullet and adds it to the list of bullets...? Maybe
+	just returns the bullet and adding can be done by whatever calls
+	the shooting.
+
+	Bullets don't have their own bullets, and shooting from a bullet
+	will cause an error, but the other entities shoot, so...
+	*/
+		var self = this;
+
+		var bullet = new Bullet(
+			self.bulletIDNum, self.objType, self.html, self.bounderHTML
+		);
+
+		self.bulletIDNum += 1;
+
+		return bullet;
+
+	};  // End Entity.shoot()
 
 
 	return entity;

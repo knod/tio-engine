@@ -36,7 +36,7 @@ Mobs object, controlling behavior of AI
 	Does not add the html property to the object
 	*/
 		var html = document.createElement( "div" );
-		// For placement and color
+		// For color
 		html.className 	= "mob mob" + mob.mobType;
 		// Not sure we need this, but maybe it will help
 		// ??: Should DOM id be based on mob.id? Or row and col numbers? We
